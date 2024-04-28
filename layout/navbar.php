@@ -5,7 +5,8 @@ if (isset($_POST['logout'])) {
     header("location: index.php");
 }
 ?>
-<nav class="navbar navbar-expand-lg bg-body-tertiary p-2 rounded-5 shadow">
+<!-- bg-body-tertiary -->
+<nav class="navbar navbar-expand-lg  p-2 rounded-5 shadow" style="background-color: #933132;">
     <!-- new nav start -->
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">Nihongoqz</a>
@@ -35,7 +36,10 @@ if (isset($_POST['logout'])) {
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="todolist.php">To Do List</a>
+                        <a class="nav-link" href="hiragana.php">Hiragana Quiz</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="katakana.php">Katakana Quiz</a>
                     </li>
                 </ul>
                 <!-- login and sign up start -->
