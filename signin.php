@@ -23,7 +23,7 @@ if (isset($_POST['sign-in'])) {
         $_SESSION["user_id"] = $data_user["user_id"];
         $_SESSION["username"] = $data_user["username"];
         $_SESSION['is_login'] = true;
-        header("location: todolist.php");
+        header("location: index.php");
     } else {
         $status_signup = "Pastikan anda memasukkan username dan password yang benar!";
     }

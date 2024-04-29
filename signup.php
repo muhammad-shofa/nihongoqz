@@ -15,10 +15,11 @@ if (isset($_POST["sign-up"])) {
     $name = htmlspecialchars($_POST["name"]);
     $email = htmlspecialchars($_POST["email"]);
     $gender = htmlspecialchars($_POST["gender"]);
+    $region = htmlspecialchars($_POST["region"]);
 
     $hash_password = hash('sha256', $password);
 
-    $sql_signup = $insert->selectTable($table_name = "users", $condition = "(username, password, name, email, gender) VALUES ('$username', '$hash_password', '$name', '$email', '$gender')");
+    $sql_signup = $insert->selectTable($table_name = "users", $condition = "(username, password, name, email, gender, region) VALUES ('$username', '$hash_password', '$name', '$email', '$gender', '$region')");
     $result = $connected->query($sql_signup);
     if ($result) {
         $status_signup = "<b>successfully, please <a href='signin.php'>Sign In!</a></b>";
@@ -89,6 +90,18 @@ if (isset($_POST["sign-up"])) {
                         <select name="gender" id="gender" class="form-select">
                             <option value="Male">Male</option>
                             <option value="Famale">Famale</option>
+                        </select>
+                    </div>
+
+                    <!-- Region input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="region">Region</label>
+                        <select name="region" id="region" class="form-select">
+                            <option value="indonesia">Indonesia</option>
+                            <option value="malaysia">Malaysia</option>
+                            <option value="thailand">Thailand</option>
+                            <option value="singapura">Singapura</option>
+                            <option value="amerika_serikat">Amerika Serikat</option>
                         </select>
                     </div>
 

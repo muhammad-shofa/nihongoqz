@@ -5,8 +5,8 @@ if (isset($_POST['logout'])) {
     header("location: index.php");
 }
 ?>
-<!-- bg-body-tertiary -->
-<nav class="navbar navbar-expand-lg  p-2 rounded-5 shadow" style="background-color: #933132;">
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-2 rounded-5 shadow">
     <!-- new nav start -->
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">Nihongoqz</a>

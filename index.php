@@ -20,9 +20,8 @@
         <?php include "layout/navbar.php" ?>
         <!-- navbar end -->
         <div class="text-hero p-5 m-5 text-center text-light">
-            <h1>What Is ??</h1>
-            <p class="fs-5 mb-5">With Tugasqw, you not only manage your tasks, but also take back control of your life.
-                From daily tasks to big dreams, we ensure that you no longer feel drowned in endless lists.
+            <h1>What Is Nihongoqz??</h1>
+            <p class="fs-5 mb-5">p
             </p>
             <a href="todolist.php" class="cta-light p-3 rounded-5 link-underline link-underline-opacity-0">Try It
                 Now</a>
