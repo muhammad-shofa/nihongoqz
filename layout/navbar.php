@@ -46,7 +46,7 @@ if (isset($_POST['logout'])) {
                 <span class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
                     <?php
                     if (!isset($_SESSION['is_login'])) { ?>
-                        <a class="nav-link p-2 rounded border bg-primary text-light" href="signin.php">Sign in</a>
+                        <a class="nav-link p-2 active-btn-red" href="signin.php">Sign in</a>
                         <a class="nav-link" href="signup.php">Sign Up</a>
                     <?php } else { ?>
                         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
