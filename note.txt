@@ -1,0 +1,17 @@
+       <?php $counter_quiz = 1;
+            while (isset($result_select_hiragana) ? $data_hiragana = $result_select_hiragana->fetch_assoc() : false) { ?>
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <div id="card-quiz-<?= $counter_quiz ?>"
+                        class="card-quiz p-3 pt-5 m-3 border-5 rounded-3 shadow text-center align-items-center">
+                        <h1 style="font-style: 30%;"><?= $data_hiragana['hiragana'] ?></h1>
+                        <br>
+                        <div class="input-group-lg">
+                            <input type="hidden" name="counter_quiz" value="<?= $counter_quiz ?>">
+                            <input type="hidden" name="real_answer" value="<?= $data_hiragana['hiragana'] ?>">
+                            <input type="text" class="form-control text-center border-3" name="answer_hiragana"
+                                onclick="changeBg(<?= $counter_quiz ?>)">
+                        </div>
+                    </div>
+                </form>
+                <?php $counter_quiz++;
+            } ?>

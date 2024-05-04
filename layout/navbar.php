@@ -9,7 +9,7 @@ if (isset($_POST['logout'])) {
 <nav class="navbar navbar-expand-lg bg-body-tertiary p-2 rounded-5 shadow">
     <!-- new nav start -->
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">Nihongoqz</a>
+        <a class="navbar-brand text-red" href="index.php">Nihongoqz</a>
         <!-- toggle btn start -->
         <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">

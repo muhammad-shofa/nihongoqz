@@ -52,7 +52,7 @@ if (isset($_POST["sign-up"])) {
         <div class="container-register mx-auto my-3 rounded-3 shadow">
             <!-- form register start -->
             <div class="card-body px-4 py-5 px-md-5">
-                <h2 class="text-center p-3">Sign Up <b class="text-primary">Nihongoqz</b></h2>
+                <h2 class="text-center p-3">Sign Up <b class="text-red">Nihongoqz</b></h2>
                 <p class="text-center fw-bold">Sign up to access all features</p>
                 <p>
                     <?= $status_signup ?>

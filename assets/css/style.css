@@ -17,10 +17,7 @@
     backdrop-filter: blur(5px);
   }
 }
-/* navbar */
-.navbar-brand {
-  color: var(--accent-red);
-}
+
 /* hero */
 
 .hero {
@@ -29,7 +26,10 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
-
+/* red text */
+.text-red {
+  color: var(--accent-red);
+}
 /* red button */
 .active-btn-red {
   background-color: var(--accent-red);
@@ -59,9 +59,4 @@
 /* register.php */
 .container-register {
   max-width: 600px;
-}
-
-.hiragana #quiz {
-  display: none;
-  opacity: 0;
 }
