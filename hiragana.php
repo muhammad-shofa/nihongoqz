@@ -31,7 +31,6 @@ if (isset($_POST['answer_hiragana'])) {
     <?php } else {
         $message_answer = "Incorrect";
     }
-
 }
 
 ?>
@@ -62,7 +61,32 @@ if (isset($_POST['answer_hiragana'])) {
             <h2><b class="text-red">Hiragana</b> Quiz</h2>
             <p>Start Your Hiragana Quiz With Nihongoqz.</p>
             <h4>Select Kana</h4>
-            <button class="btn btn-red">
+            <div class="container-all-tab">
+                <!-- trigger content tab start -->
+                <ul class="nav nav-pills mb-3 mx-auto" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="btn-red py-2 px-3 mx-2 active" id="pills-hiragana-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-hiragana" type="button" role="tab" aria-controls="pills-hiragana"
+                            aria-selected="true">hiragana</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="btn-red py-2 px-3" id="pills-katakana-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-katakana" type="button" role="tab" aria-controls="pills-katakana"
+                            aria-selected="false">katakana</button>
+                    </li>
+                </ul>
+                <!-- trigger content tab start -->
+                <!-- content tab start -->
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-hiragana" role="tabpanel"
+                        aria-labelledby="pills-hiragana-tab" tabindex="0">
+                        HiraganaHiraganaHiraganaHiraganaHiraganaHiraganaHiraganaHiraganaHiragana</div>
+                    <div class="tab-pane fade" id="pills-katakana" role="tabpanel" aria-labelledby="pills-katakana-tab"
+                        tabindex="0">KatakanaKatakanaKatakanaKatakanaKatakanaKatakanaKatakanaKatakana</div>
+                </div>
+                <!-- content tab start -->
+            </div>
+            <button id="mainKanaBtn" class="btn btn-red">
                 Main Kana
             </button>
             <p><?= $message_answer ?>
@@ -75,10 +99,8 @@ if (isset($_POST['answer_hiragana'])) {
             <?php
             $counter_quiz = 1;
             while (isset($result_select_hiragana) ? $data_hiragana = $result_select_hiragana->fetch_assoc() : false) {
-                // Tentukan apakah jawaban benar atau tidak
                 $is_correct_answer = $message_answer === "your answer is correct!";
-                // Tentukan warna latar belakang card-quiz berdasarkan apakah jawaban benar atau salah
-                $bg_color = $is_correct_answer ? 'style="background-color: #28a745;"' : ''; // Default background color is white if answer is incorrect
+                $bg_color = $is_correct_answer ? 'style="background-color: #28a745;"' : '';
                 ?>
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                     <div id="card-quiz-<?= $counter_quiz ?>"
@@ -96,22 +118,13 @@ if (isset($_POST['answer_hiragana'])) {
                 $counter_quiz++;
             }
             ?>
-
-
-
-
-
-
-
-
-
         </div>
         <!-- container quiz end -->
     </div>
     <!-- hiragana end -->
     <!-- js -->
     <!-- custom js -->
-    <!-- <script src="assets/js/main.js"></script> -->
+    <script src="assets/js/main.js"></script>
     <!-- bootstrap -->
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
