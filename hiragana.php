@@ -22,12 +22,7 @@ if (isset($_POST['answer_hiragana'])) {
 
     if ($result_romaji->num_rows > 0) {
         $message_answer = "your answer is correct!"; ?>
-        <script>
-            function changeBg(counter_quiz) {
-                const cardQuiz = document.getElementById("card-quiz-" + counter_quiz);
-                cardQuiz.style.backgroundColor = "#0d6efd";
-            }
-        </script>
+
     <?php } else {
         $message_answer = "Incorrect";
     }
@@ -61,63 +56,52 @@ if (isset($_POST['answer_hiragana'])) {
             <h2><b class="text-red">Hiragana</b> Quiz</h2>
             <p>Start Your Hiragana Quiz With Nihongoqz.</p>
             <h4>Select Kana</h4>
-            <div class="container-all-tab">
-                <!-- trigger content tab start -->
-                <ul class="nav nav-pills mb-3 mx-auto" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="btn-red py-2 px-3 mx-2 active" id="pills-hiragana-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-hiragana" type="button" role="tab" aria-controls="pills-hiragana"
-                            aria-selected="true">hiragana</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="btn-red py-2 px-3" id="pills-katakana-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-katakana" type="button" role="tab" aria-controls="pills-katakana"
-                            aria-selected="false">katakana</button>
-                    </li>
-                </ul>
-                <!-- trigger content tab start -->
-                <!-- content tab start -->
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-hiragana" role="tabpanel"
-                        aria-labelledby="pills-hiragana-tab" tabindex="0">
-                        HiraganaHiraganaHiraganaHiraganaHiraganaHiraganaHiraganaHiraganaHiragana</div>
-                    <div class="tab-pane fade" id="pills-katakana" role="tabpanel" aria-labelledby="pills-katakana-tab"
-                        tabindex="0">KatakanaKatakanaKatakanaKatakanaKatakanaKatakanaKatakanaKatakana</div>
-                </div>
-                <!-- content tab start -->
+            <!-- <div class="container-all-tab mx-auto"> -->
+            <!-- trigger select kana start -->
+            <div class="d-flex gap-3 justify-content-center">
+                <button class="btn-red py-2 px-3" onclick="mainKana()">Main Kana</button>
+                <button class="btn-red py-2 px-3" onclick="dakuten()">Dakuten</button>
             </div>
-            <button id="mainKanaBtn" class="btn btn-red">
-                Main Kana
-            </button>
-            <p><?= $message_answer ?>
-            </p>
+            <!-- trigger select kana end -->
+
+            <!-- content main kana start -->
+            <div class="d-flex gap-3 justify-content-center">
+                <div class="content-main-kana" id="content-main-kana">
+                    <h4>Ini main kana</h4>
+                </div>
+                <div class="content-dakuten" id="content-dakuten">
+                    <h4>Ini dakuten</h4>
+                </div>
+            </div>
+            <div class="btn-start" id="btn-start">
+                <button class="btn-red py-2 px-3 my-2">Start Quiz</button>
+            </div>
+            <!-- content main kana end -->
+
+            <!-- </div> -->
+            <p><?= $message_answer ?></p>
         </div>
         <!-- container text quiz end -->
 
         <!-- container quiz start -->
         <div class="container-quiz p-3 mx-auto m-3 d-flex flex-wrap justify-content-center rounded-3 shadow">
-            <?php
-            $counter_quiz = 1;
-            while (isset($result_select_hiragana) ? $data_hiragana = $result_select_hiragana->fetch_assoc() : false) {
-                $is_correct_answer = $message_answer === "your answer is correct!";
-                $bg_color = $is_correct_answer ? 'style="background-color: #28a745;"' : '';
-                ?>
+            <?php $counter_quiz = 1;
+            while (isset($result_select_hiragana) ? $data_hiragana = $result_select_hiragana->fetch_assoc() : false) { ?>
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                     <div id="card-quiz-<?= $counter_quiz ?>"
-                        class="card-quiz p-3 pt-5 m-3 border-5 rounded-3 shadow text-center align-items-center" <?= $bg_color ?>>
+                        class="card-quiz p-3 pt-5 m-3 border-5 rounded-3 shadow text-center align-items-center">
                         <h1 style="font-style: 30%;"><?= $data_hiragana['hiragana'] ?></h1>
                         <br>
                         <div class="input-group-lg">
                             <input type="hidden" name="counter_quiz" value="<?= $counter_quiz ?>">
                             <input type="hidden" name="real_answer" value="<?= $data_hiragana['hiragana'] ?>">
-                            <input type="text" class="form-control text-center border-3" name="answer_hiragana">
+                            <input type="text" class="form-control text-center border-3" name="answer_hiragana"
+                                onclick="changeBg(<?= $counter_quiz ?>)">
                         </div>
                     </div>
                 </form>
-                <?php
-                $counter_quiz++;
-            }
-            ?>
+                <?php $counter_quiz++;
+            } ?>
         </div>
         <!-- container quiz end -->
     </div>
@@ -125,8 +109,11 @@ if (isset($_POST['answer_hiragana'])) {
     <!-- js -->
     <!-- custom js -->
     <script src="assets/js/main.js"></script>
+    <!-- <script>
+       
+    </script> -->
     <!-- bootstrap -->
-    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>

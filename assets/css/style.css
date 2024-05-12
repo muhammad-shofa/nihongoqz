@@ -6,15 +6,16 @@
 
 :root {
   --primary: #f7f8f9;
-  --secondary: #484848;
+  /* --secondary: #484848; */
   --accent-red: #cf0a0a;
-  --accent-blue: #0d6efd;
+  /* --accent-blue: #0d6efd; */
 }
 
 @media (max-width: 991px) {
   .sidebar {
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(5px);
+    background-color: var(--primary);
+    /* background-color: rgba(255, 255, 255, 0.5); */
+    /* backdrop-filter: blur(5px); */
   }
 }
 
@@ -25,6 +26,21 @@
   background-image: url("../img/bg-nihongoqz.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+}
+/* checkbox trigger tabs */
+#main-kana {
+  display: none;
+}
+#main-kana:checked ~ .btn-red {
+  background-color: var(--accent-red);
+  color: var(--primary);
+}
+#dakuten {
+  display: none;
+}
+#dakuten:checked ~ .btn-red {
+  background-color: var(--accent-red);
+  color: var(--primary);
 }
 /* red text */
 .text-red {
@@ -52,19 +68,27 @@
   background-color: var(--accent-red);
   color: var(--primary);
 }
-.container-quiz {
+/* .hiragana .container-quiz {
   display: none;
-}
+} */
+/* .content-main-kana {
+  display: none;
+} */
 .container-quiz .card-quiz {
   width: 200px;
   height: 200px;
-}
-.container-all-tab {
-  max-width: 350px;
-  text-align: center;
-  /* margin: auto; */
 }
 /* register.php */
 .container-register {
   max-width: 600px;
 }
+.content-main-kana {
+  display: none;
+}
+.content-dakuten {
+  display: none;
+}
+.btn-start {
+  display: none;
+}
+/* CLASSLIST FOR CONTENT SELECT KANA */
