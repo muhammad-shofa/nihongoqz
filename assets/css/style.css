@@ -91,10 +91,7 @@
 .content-combination {
   display: none;
 }
-.btn-start-main-kana {
-  display: none;
-}
-.btn-start-dakuten {
+.btn-start {
   display: none;
 }
 /* CLASSLIST FOR CONTENT SELECT KANA */

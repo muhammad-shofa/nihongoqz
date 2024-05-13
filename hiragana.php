@@ -56,7 +56,6 @@ if (isset($_POST['answer_hiragana'])) {
             <h2><b class="text-red">Hiragana</b> Quiz</h2>
             <p>Start Your Hiragana Quiz With Nihongoqz. <br> Type the Romaji in input box kana</p>
             <h4>Select Kana</h4>
-            <!-- <div class="container-all-tab mx-auto"> -->
             <!-- trigger select kana start -->
             <div class="d-flex gap-3 justify-content-center">
                 <button class="btn-red py-2 px-3" id="btn-main-kana" onclick="mainKana()">Main Kana</button>
@@ -90,12 +89,9 @@ if (isset($_POST['answer_hiragana'])) {
                 </div>
                 <!-- content combination end -->
             </div>
-            <div class="btn-start-main-kana" id="btn-start-main-kana" style="display: none;">
+            <div class="btn-start" id="btn-start" style="display: none;">
                 <button class="btn-red py-2 px-3 my-2">Start Quiz</button>
             </div>
-            <!-- <div class="btn-start-dakuten" id="btn-start-dakuten">
-                <button class="btn-red py-2 px-3 my-2">Start Quiz</button>
-            </div> -->
             <!-- content main kana end -->
 
             <!-- </div> -->
