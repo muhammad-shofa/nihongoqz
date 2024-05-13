@@ -68,9 +68,9 @@
   background-color: var(--accent-red);
   color: var(--primary);
 }
-.container-quiz {
+/* .container-quiz {
   display: none;
-}
+} */
 /* .content-main-kana {
   display: none;
 } */
@@ -91,7 +91,10 @@
 .content-combination {
   display: none;
 }
-.btn-start {
+.btn-start-main-kana {
+  display: none;
+}
+.btn-start-dakuten {
   display: none;
 }
 /* CLASSLIST FOR CONTENT SELECT KANA */

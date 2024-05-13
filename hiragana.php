@@ -17,7 +17,7 @@ if (isset($_POST['answer_hiragana'])) {
     $real_answer = $_POST['real_answer']; // hiragana
     $answer_hiragana = $_POST['answer_hiragana']; // romaji
 
-    $sql_romaji = $select->selectTable($table_name = "hiragana", $fields = '*', $condition = "WHERE hiragana='$real_answer' AND romaji='$answer_hiragana'");
+    $sql_romaji = $select->selectTable($table_name = "hiragana", $fields = '*', $condition = "WHERE hiragana='$real_answer' AND romaji_kana='$answer_hiragana'");
     $result_romaji = $connected->query($sql_romaji);
 
     if ($result_romaji->num_rows > 0) {
@@ -90,9 +90,12 @@ if (isset($_POST['answer_hiragana'])) {
                 </div>
                 <!-- content combination end -->
             </div>
-            <div class="btn-start" id="btn-start">
+            <div class="btn-start-main-kana" id="btn-start-main-kana" style="display: none;">
                 <button class="btn-red py-2 px-3 my-2">Start Quiz</button>
             </div>
+            <!-- <div class="btn-start-dakuten" id="btn-start-dakuten">
+                <button class="btn-red py-2 px-3 my-2">Start Quiz</button>
+            </div> -->
             <!-- content main kana end -->
 
             <!-- </div> -->
@@ -101,10 +104,22 @@ if (isset($_POST['answer_hiragana'])) {
         <!-- container text quiz end -->
 
         <!-- container quiz start -->
+        <!-- container quiz start -->
         <div class="container-quiz p-3 mx-auto m-3 d-flex flex-wrap justify-content-center rounded-3 shadow">
-            <?php $counter_quiz = 1;
-            while (isset($result_select_hiragana) ? $data_hiragana = $result_select_hiragana->fetch_assoc() : false) { ?>
-                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+            <?php
+            // Mengambil semua data hiragana ke dalam array
+            $hiragana_array = [];
+            while ($row = $result_select_hiragana->fetch_assoc()) {
+                $hiragana_array[] = $row;
+            }
+
+            // Mengacak urutan array
+            shuffle($hiragana_array);
+
+            // Menampilkan form untuk setiap elemen hiragana yang sudah diacak
+            foreach ($hiragana_array as $counter_quiz => $data_hiragana) {
+                ?>
+                <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
                     <div id="card-quiz-<?= $counter_quiz ?>"
                         class="card-quiz p-3 pt-5 m-3 border-5 rounded-3 shadow text-center align-items-center">
                         <h1 style="font-style: 30%;"><?= $data_hiragana['hiragana'] ?></h1>
@@ -117,9 +132,10 @@ if (isset($_POST['answer_hiragana'])) {
                         </div>
                     </div>
                 </form>
-                <?php $counter_quiz++;
-            } ?>
+            <?php } ?>
         </div>
+        <!-- container quiz end -->
+
         <!-- container quiz end -->
     </div>
     <!-- hiragana end -->
