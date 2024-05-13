@@ -68,9 +68,9 @@
   background-color: var(--accent-red);
   color: var(--primary);
 }
-/* .hiragana .container-quiz {
+.container-quiz {
   display: none;
-} */
+}
 /* .content-main-kana {
   display: none;
 } */
@@ -86,6 +86,9 @@
   display: none;
 }
 .content-dakuten {
+  display: none;
+}
+.content-combination {
   display: none;
 }
 .btn-start {
