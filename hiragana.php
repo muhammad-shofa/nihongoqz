@@ -11,21 +11,34 @@ $sql_select_hiragana = $select->selectTable($table_name = "hiragana", $fields = 
 $result_select_hiragana = $connected->query($sql_select_hiragana);
 
 
+// check user answer
+$total_true_answers = 0;
+$total_false_answers = 0;
 $message_answer = "";
-
 if (isset($_POST['answer_hiragana'])) {
-    $real_answer = $_POST['real_answer']; // hiragana
-    $answer_hiragana = $_POST['answer_hiragana']; // romaji
+    $counter_quiz = $_POST['counter_quiz'];
+    $real_answer = $_POST['real_answer']; // hiragana/dakuten real answer
+    $answer_hiragana = $_POST['answer_hiragana']; // romaji answer from user
 
     $sql_romaji = $select->selectTable($table_name = "hiragana", $fields = '*', $condition = "WHERE hiragana='$real_answer' AND romaji_kana='$answer_hiragana'");
     $result_romaji = $connected->query($sql_romaji);
 
     if ($result_romaji->num_rows > 0) {
-        $message_answer = "your answer is correct!"; ?>
-
-    <?php } else {
+        $message_answer = "your answer is correct!";
+        $_SESSION["true_answer"][$counter_quiz] = true;
+    } else {
         $message_answer = "Incorrect";
+        $_SESSION["false_answer"][$counter_quiz] = false;
     }
+}
+
+// count true answer
+if (isset($_SESSION["true_answer"]) && is_array($_SESSION["true_answer"])) {
+    $total_true_answers = count($_SESSION["true_answer"]);
+}
+// count false answer
+if (isset($_SESSION["false_answer"]) && is_array($_SESSION["false_answer"])) {
+    $total_false_answers = count($_SESSION["false_answer"]);
 }
 
 ?>
@@ -90,41 +103,59 @@ if (isset($_POST['answer_hiragana'])) {
                 <!-- content combination end -->
             </div>
             <div class="btn-start" id="btn-start" style="display: none;">
-                <button class="btn-red py-2 px-3 my-2">Start Quiz</button>
+                <button class="active-btn-red bounce py-2 px-3 my-2">Start Quiz</button>
             </div>
             <!-- content main kana end -->
 
             <!-- </div> -->
             <p><?= $message_answer ?></p>
+            <p>Ini dari true answer SESSION
+                <?php isset($_SESSION['true_answer']) ? var_dump($_SESSION["true_answer"]) : "" ?>
+            </p>
+            <p>Ini dari false answer SESSION
+                <?php isset($_SESSION['false_answer']) ? var_dump($_SESSION["false_answer"]) : "" ?>
+            </p>
+            <p>TOTAL TRUE ANSWER <?= $total_true_answers ?></p>
+            <p>TOTAL FALSE ANSWER <?= $total_false_answers ?></p>
         </div>
         <!-- container text quiz end -->
 
         <!-- container quiz start -->
         <!-- container quiz start -->
-        <div class="container-quiz p-3 mx-auto m-3 d-flex flex-wrap justify-content-center rounded-3 shadow">
+        <div class="container-quiz p-3 mx-auto m-3 d-flex flex-wrap justify-content-center rounded-3 shadow"
+            style="display: none;">
             <?php
-            // Mengambil semua data hiragana ke dalam array
             $hiragana_array = [];
             while ($row = $result_select_hiragana->fetch_assoc()) {
                 $hiragana_array[] = $row;
             }
 
-            // Mengacak urutan array
             shuffle($hiragana_array);
 
             // Menampilkan form untuk setiap elemen hiragana yang sudah diacak
-            foreach ($hiragana_array as $counter_quiz => $data_hiragana) {
+            foreach ($hiragana_array as $data_hiragana) {
+
+                $background_color = '';
+
+                if (isset($_SESSION['true_answer'][$data_hiragana["hiragana_id"]])) {
+                    $background_color = 'bg-success';
+                } else if (isset($_SESSION["false_answer"][$data_hiragana['hiragana_id']])) {
+                    $background_color = 'bg-warning';
+                }
+
                 ?>
-                <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
-                    <div id="card-quiz-<?= $counter_quiz ?>"
-                        class="card-quiz p-3 pt-5 m-3 border-5 rounded-3 shadow text-center align-items-center">
+                <form id="quizForm<?= $data_hiragana['hiragana_id'] ?>" action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <div id="card-quiz-<?= $data_hiragana['hiragana_id'] ?>"
+                        class="card-quiz p-3 pt-5 m-3 border-5 rounded-3 shadow text-center align-items-center <?= $background_color ?>">
                         <h1 style="font-style: 30%;"><?= $data_hiragana['hiragana'] ?></h1>
                         <br>
                         <div class="input-group-lg">
-                            <input type="hidden" name="counter_quiz" value="<?= $counter_quiz ?>">
+                            <input type="hidden" name="counter_quiz" value="<?= $data_hiragana['hiragana_id'] ?>">
                             <input type="hidden" name="real_answer" value="<?= $data_hiragana['hiragana'] ?>">
-                            <input type="text" class="form-control text-center border-3" name="answer_hiragana"
-                                onclick="changeBg(<?= $counter_quiz ?>)">
+                            <input type="text" class="form-control text-center border-3" name="answer_hiragana">
+                            <!--  -->
+                            <button type="button" class="btn btn-primary" onclick="submitQuizForm('quizForm<?= $data_hiragana['hiragana_id'] ?>')">Submit</button>
+                            <!--  -->
                         </div>
                     </div>
                 </form>
