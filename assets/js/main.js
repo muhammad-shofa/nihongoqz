@@ -1,8 +1,3 @@
-function changeBg(counter_quiz) {
-  const cardQuiz = document.getElementById("card-quiz-" + counter_quiz);
-  cardQuiz.style.backgroundColor = "#0d6efd";
-}
-
 let mainKanaIsSelect = 0;
 let dakutenIsSelect = 0;
 let btnStart = document.getElementById("btn-start");
@@ -24,7 +19,6 @@ function mainKana() {
     mainKanaIsSelect = 0;
   }
 
-  // Memeriksa dan mengubah tampilan btnStart
   if (mainKanaIsSelect === 1 || dakutenIsSelect === 1) {
     btnStart.style.display = "block";
   } else {
@@ -65,3 +59,22 @@ function combination() {
     combinationContent.style.display = "none";
   }
 }
+
+// Function start quiz
+function startQuiz() {
+  // let containerQuiz = document.getElementById("container-quiz");
+  // if (containerQuiz.style.display == "none") {
+  //   document.getElementById("container-first").style.display = "none";
+  // }
+  document.getElementById("quizIsOnForm").submit();
+}
+
+// let quizIsOn = sessionStorage.getItem("quizIsOn");
+// console.log(quizIsOn);
+// if (quizIsOn === 1) {
+//   document.getElementById("container-first").style.display = "none";
+//   document.getElementById("container-quiz").style.display = "block";
+// } else {
+//   document.getElementById("container-first").style.display = "block";
+//   document.getElementById("container-quiz").style.display = "none";
+// }
