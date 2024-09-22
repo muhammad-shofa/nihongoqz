@@ -194,7 +194,6 @@ if (isset($_SESSION["false_answer"]) && is_array($_SESSION["false_answer"])) {
     </div>
     <!-- hiragana end -->
 
-
     <!-- js -->
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
