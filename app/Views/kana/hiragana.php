@@ -10,17 +10,12 @@
 </head>
 
 <body>
-    <h1>Hiragana</h1>
-    <!-- <div class="card text-center" style="width: 18rem;">
-        <div class="card-body">
-            <h2>${hiragana.hiragana_kana}</h2>
-            <input type="text" class="dakuten_field form-control">
-            <input type="hidden" class="true_answer">
+    <div class="container bg-light-subtle">
+        <h1 class="my-5 text-center">Hiragana Kana Test</h1>
+        <!-- semua card hiragana -->
+        <div id="container-card" class="d-flex flex-wrap justify-content-center m-3 gap-3">
+            <!--  -->
         </div>
-    </div> -->
-
-    <div id="container-card" class="d-flex flex-wrap justify-content-center m-3 gap-3">
-        <!--  -->
     </div>
 
     <!-- Bootstrap -->
@@ -41,11 +36,11 @@
 
                             response.dataHiragana.forEach(hiragana => {
                                 cards += `
-                                <div class="card text-center" style="width: 18rem;">
+                                <div class="card text-center" style="width: 18rem;" id="card_${hiragana.hiragana_id}">
                                     <div class="card-body">
                                         <h2>${hiragana.hiragana_kana}</h2>
-                                        <input type="text" class="dakuten_field form-control" data-hiragana_id="${hiragana.hiragana_id}">
-                                        <input type="hidden" class="true_answer" data-hiragana_id="${hiragana.hiragana_id}" value="${hiragana.dakuten}">
+                                        <input type="text" class="dakuten_field form-control" id="dakuten_field_${hiragana.hiragana_id}" data-hiragana_id="${hiragana.hiragana_id}">
+                                        <input type="hidden" class="true_answer" id="true_answer_${hiragana.hiragana_id}" value="${hiragana.dakuten}">
                                     </div>
                                 </div>`;
                             });
@@ -60,6 +55,30 @@
             }
 
             loadHiraganaTest();
+
+            $(document).on('change', '.dakuten_field', function() {
+                let hiragana_id = $(this).data("hiragana_id");
+                let dakuten_field = $('#dakuten_field_' + hiragana_id).val();
+                let true_answer = $('#true_answer_' + hiragana_id).val();
+
+                // console.log(hiragana_id);
+                // console.log(dakuten_field);
+                // console.log(true_answer);
+
+                // fitur lanjutan, simpan ke localstorage agar ketika direfresh data tidak hilang sampai user menyelesaikan test-nya
+                if (dakuten_field == true_answer) {
+                    console.log("Jawaban kamu " + dakuten_field + " BENAR!");
+                    $('#card_' + hiragana_id).addClass('bg-success');
+
+                    status_answer = true;
+                    // loadHiraganaTest();
+                    // jika sesuai maka masukkan data dakute_field dan true answer ke localstorage dengan key "is_true"
+                } else {
+                    console.log("Jawaban kamu " + dakuten_field + " SALAH!");
+                    $('#card_' + hiragana_id).addClass('bg-danger');
+                    // jika tidak sesuai maka masukkan data dakute_field dan true answer ke localstorage dengan key "is_false"
+                }
+            })
         })
     </script>
 </body>
