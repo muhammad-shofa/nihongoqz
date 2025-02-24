@@ -6,10 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/style.css">
     <title>Nihongoqz | Hiragana</title>
 </head>
 
 <body>
+    <!-- navbar -->
+    <!-- <php include APPPATH . 'Views/components/navbar.php'; ?> -->
+
+    <?= view('components/navbar') ?>
+
     <div class="container bg-light-subtle">
         <h1 class="my-5 text-center">Hiragana Kana Test</h1>
         <!-- semua card hiragana -->
@@ -68,13 +75,14 @@
                 // fitur lanjutan, simpan ke localstorage agar ketika direfresh data tidak hilang sampai user menyelesaikan test-nya
                 if (dakuten_field == true_answer) {
                     console.log("Jawaban kamu " + dakuten_field + " BENAR!");
+                    $('#card_' + hiragana_id).removeClass('bg-danger');
                     $('#card_' + hiragana_id).addClass('bg-success');
 
-                    status_answer = true;
                     // loadHiraganaTest();
                     // jika sesuai maka masukkan data dakute_field dan true answer ke localstorage dengan key "is_true"
                 } else {
                     console.log("Jawaban kamu " + dakuten_field + " SALAH!");
+                    $('#card_' + hiragana_id).removeClass('bg-success');
                     $('#card_' + hiragana_id).addClass('bg-danger');
                     // jika tidak sesuai maka masukkan data dakute_field dan true answer ke localstorage dengan key "is_false"
                 }
