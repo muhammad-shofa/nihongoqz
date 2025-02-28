@@ -31,6 +31,23 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+
+
+            // simpan jawaban benar pada array
+            let user_true_answer = [];
+            let user_false_answer = [];
+
+
+            // function untuk mengacak isi array 
+            function shuffleArray(array) {
+                let shuffled = array.slice(); // Copy array
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                return shuffled;
+            }
+
             // function untuk meminta semua data hiragana dari backend melalui endpoint
             function loadHiraganaTest() {
                 $.ajax({
@@ -40,18 +57,33 @@
                     success: function(response) {
                         if (response.status == 'success') {
                             let cards = "";
+                            let shuffled_hiragana = shuffleArray(response.dataHiragana);
+                            // console.log(shuffled_hiragana);
+                            let get_user_true_answer = JSON.parse(localStorage.getItem('user_true_answer')) || [];
+                            let get_user_false_answer = JSON.parse(localStorage.getItem('user_false_answer')) || [];
+                            // let matching_answer = shuffleArray.filter(item => get_user_true_answer.includes(item));
 
-                            response.dataHiragana.forEach(hiragana => {
+                            shuffled_hiragana.forEach(hiragana => {
+                                let is_correct = get_user_true_answer.includes(hiragana.hiragana_id);
+                                let is_wrong = get_user_false_answer.includes(hiragana.hiragana_id);
+                                
+                                let bg_class = "bg-white"; // Default putih
                                 cards += `
-                                <div class="card text-center" style="width: 18rem;" id="card_${hiragana.hiragana_id}">
+                                <div class="card text-center ${bg_class}" style="width: 18rem;" id="card_${hiragana.hiragana_id}">
                                     <div class="card-body">
                                         <h2>${hiragana.hiragana_kana}</h2>
                                         <input type="text" class="dakuten_field form-control" id="dakuten_field_${hiragana.hiragana_id}" data-hiragana_id="${hiragana.hiragana_id}">
                                         <input type="hidden" class="true_answer" id="true_answer_${hiragana.hiragana_id}" value="${hiragana.dakuten}">
                                     </div>
                                 </div>`;
-                            });
 
+                                // Atur warna card berdasarkan kondisi
+                                if (is_correct) {
+                                    bg_class = "bg-success"; // Hijau jika benar
+                                } else if (is_wrong) {
+                                    bg_class = "bg-danger"; // Merah jika salah
+                                }
+                            });
                             $('#container-card').html(cards);
                         }
                     },
@@ -68,23 +100,25 @@
                 let dakuten_field = $('#dakuten_field_' + hiragana_id).val();
                 let true_answer = $('#true_answer_' + hiragana_id).val();
 
-                // console.log(hiragana_id);
-                // console.log(dakuten_field);
-                // console.log(true_answer);
-
-                // fitur lanjutan, simpan ke localstorage agar ketika direfresh data tidak hilang sampai user menyelesaikan test-nya
+                // simpan ke localstorage agar ketika direfresh data tidak hilang sampai user menyelesaikan test-nya
                 if (dakuten_field == true_answer) {
                     console.log("Jawaban kamu " + dakuten_field + " BENAR!");
+                    $('#card_' + hiragana_id).removeClass('bg-white');
                     $('#card_' + hiragana_id).removeClass('bg-danger');
                     $('#card_' + hiragana_id).addClass('bg-success');
 
-                    // loadHiraganaTest();
-                    // jika sesuai maka masukkan data dakute_field dan true answer ke localstorage dengan key "is_true"
+                    // tambahkan ke dalam array user_true_answer dan simpan ke localstorage
+                    user_true_answer.push(hiragana_id);
+                    localStorage.setItem('user_true_answer', JSON.stringify(user_true_answer));
                 } else {
                     console.log("Jawaban kamu " + dakuten_field + " SALAH!");
+                    $('#card_' + hiragana_id).removeClass('bg-white');
                     $('#card_' + hiragana_id).removeClass('bg-success');
                     $('#card_' + hiragana_id).addClass('bg-danger');
-                    // jika tidak sesuai maka masukkan data dakute_field dan true answer ke localstorage dengan key "is_false"
+
+                    // tambahkan ke dalam array user_false_answer dan simpan ke localstorage
+                    user_false_answer.push(hiragana_id);
+                    localStorage.setItem('user_false_answer', JSON.stringify(user_false_answer));
                 }
             })
         })
