@@ -37,7 +37,6 @@
             let user_true_answer = [];
             let user_false_answer = [];
 
-
             // function untuk mengacak isi array 
             function shuffleArray(array) {
                 let shuffled = array.slice(); // Copy array
@@ -59,15 +58,25 @@
                             let cards = "";
                             let shuffled_hiragana = shuffleArray(response.dataHiragana);
                             // console.log(shuffled_hiragana);
-                            let get_user_true_answer = JSON.parse(localStorage.getItem('user_true_answer')) || [];
-                            let get_user_false_answer = JSON.parse(localStorage.getItem('user_false_answer')) || [];
-                            // let matching_answer = shuffleArray.filter(item => get_user_true_answer.includes(item));
+                            let get_user_true_answer = JSON.parse(localStorage.getItem('user_true_answer'))?.map(String) || [];
+                            let get_user_false_answer = JSON.parse(localStorage.getItem('user_false_answer'))?.map(String) || [];
+                            // console.log(typeof get_user_false_answer);
+                            // console.log(typeof get_user_true_answer);
 
                             shuffled_hiragana.forEach(hiragana => {
+                                console.log(typeof hiragana.hiragana_id);
                                 let is_correct = get_user_true_answer.includes(hiragana.hiragana_id);
                                 let is_wrong = get_user_false_answer.includes(hiragana.hiragana_id);
-                                
+                                // console.log(is_correct);
+                                // console.log(is_wrong);
+
                                 let bg_class = "bg-white"; // Default putih
+                                // Atur warna card berdasarkan kondisi
+                                if (is_correct) {
+                                    bg_class = "bg-success"; // Hijau jika benar
+                                } else if (is_wrong) {
+                                    bg_class = "bg-danger"; // Merah jika salah
+                                }
                                 cards += `
                                 <div class="card text-center ${bg_class}" style="width: 18rem;" id="card_${hiragana.hiragana_id}">
                                     <div class="card-body">
@@ -77,12 +86,6 @@
                                     </div>
                                 </div>`;
 
-                                // Atur warna card berdasarkan kondisi
-                                if (is_correct) {
-                                    bg_class = "bg-success"; // Hijau jika benar
-                                } else if (is_wrong) {
-                                    bg_class = "bg-danger"; // Merah jika salah
-                                }
                             });
                             $('#container-card').html(cards);
                         }
@@ -100,26 +103,30 @@
                 let dakuten_field = $('#dakuten_field_' + hiragana_id).val();
                 let true_answer = $('#true_answer_' + hiragana_id).val();
 
+                // Ambil data dari localStorage
+                let user_true_answer = JSON.parse(localStorage.getItem('user_true_answer')) || [];
+                let user_false_answer = JSON.parse(localStorage.getItem('user_false_answer')) || [];
+
+                // Hapus ID dari daftar jika sebelumnya salah atau benar
+                user_true_answer = user_true_answer.filter(id => id !== hiragana_id);
+                user_false_answer = user_false_answer.filter(id => id !== hiragana_id);
+
                 // simpan ke localstorage agar ketika direfresh data tidak hilang sampai user menyelesaikan test-nya
                 if (dakuten_field == true_answer) {
                     console.log("Jawaban kamu " + dakuten_field + " BENAR!");
-                    $('#card_' + hiragana_id).removeClass('bg-white');
-                    $('#card_' + hiragana_id).removeClass('bg-danger');
-                    $('#card_' + hiragana_id).addClass('bg-success');
+                    $('#card_' + hiragana_id).removeClass('bg-white bg-danger').addClass('bg-success');
 
                     // tambahkan ke dalam array user_true_answer dan simpan ke localstorage
                     user_true_answer.push(hiragana_id);
-                    localStorage.setItem('user_true_answer', JSON.stringify(user_true_answer));
                 } else {
                     console.log("Jawaban kamu " + dakuten_field + " SALAH!");
-                    $('#card_' + hiragana_id).removeClass('bg-white');
-                    $('#card_' + hiragana_id).removeClass('bg-success');
-                    $('#card_' + hiragana_id).addClass('bg-danger');
+                    $('#card_' + hiragana_id).removeClass('bg-white bg-success').addClass('bg-danger');
 
                     // tambahkan ke dalam array user_false_answer dan simpan ke localstorage
                     user_false_answer.push(hiragana_id);
-                    localStorage.setItem('user_false_answer', JSON.stringify(user_false_answer));
                 }
+                localStorage.setItem('user_true_answer', JSON.stringify(user_true_answer));
+                localStorage.setItem('user_false_answer', JSON.stringify(user_false_answer));
             })
         })
     </script>
