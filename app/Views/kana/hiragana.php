@@ -23,6 +23,10 @@
         <div id="container-card" class="d-flex flex-wrap justify-content-center m-3 gap-3">
             <!--  -->
         </div>
+        <!-- btn finish test -->
+        <div class="text-center">
+            <button class="btn-finish btn btn-lg btn-success rounded m-3">Finish</button>
+        </div>
     </div>
 
     <!-- Bootstrap -->
@@ -60,28 +64,36 @@
                             // console.log(shuffled_hiragana);
                             let get_user_true_answer = JSON.parse(localStorage.getItem('user_true_answer'))?.map(String) || [];
                             let get_user_false_answer = JSON.parse(localStorage.getItem('user_false_answer'))?.map(String) || [];
+                            let get_user_true_kana_answer = JSON.parse(localStorage.getItem('user_true_kana_answer')) || [];
+                            let get_user_false_kana_answer = JSON.parse(localStorage.getItem('user_false_kana_answer'))?.map(String) || [];
                             // console.log(typeof get_user_false_answer);
                             // console.log(typeof get_user_true_answer);
 
                             shuffled_hiragana.forEach(hiragana => {
-                                console.log(typeof hiragana.hiragana_id);
+                                // console.log(typeof hiragana.hiragana_id);
                                 let is_correct = get_user_true_answer.includes(hiragana.hiragana_id);
                                 let is_wrong = get_user_false_answer.includes(hiragana.hiragana_id);
-                                // console.log(is_correct);
-                                // console.log(is_wrong);
 
-                                let bg_class = "bg-white"; // Default putih
-                                // Atur warna card berdasarkan kondisi
-                                if (is_correct) {
-                                    bg_class = "bg-success"; // Hijau jika benar
-                                } else if (is_wrong) {
-                                    bg_class = "bg-danger"; // Merah jika salah
+                                let bg_class = "bg-white";
+                                let value_kana = "";
+
+                                // Cari indeks hiragana_id dalam user_true_answer dan user_false_answer
+                                let correctIndex = get_user_true_answer.indexOf(hiragana.hiragana_id);
+                                let wrongIndex = get_user_false_answer.indexOf(hiragana.hiragana_id);
+
+                                if (is_correct && correctIndex !== -1) {
+                                    bg_class = "bg-success";
+                                    value_kana = get_user_true_kana_answer[correctIndex] || ""; // Ambil huruf hiragana dari array user_true_kana_answer
+                                } else if (is_wrong && wrongIndex !== -1) {
+                                    bg_class = "bg-danger";
+                                    value_kana = get_user_false_kana_answer[wrongIndex] || ""; // Ambil huruf hiragana dari array user_false_kana_answer
                                 }
+
                                 cards += `
                                 <div class="card text-center ${bg_class}" style="width: 18rem;" id="card_${hiragana.hiragana_id}">
                                     <div class="card-body">
                                         <h2>${hiragana.hiragana_kana}</h2>
-                                        <input type="text" class="dakuten_field form-control" id="dakuten_field_${hiragana.hiragana_id}" data-hiragana_id="${hiragana.hiragana_id}">
+                                        <input type="text" class="dakuten_field form-control" value="${value_kana}" id="dakuten_field_${hiragana.hiragana_id}" data-hiragana_id="${hiragana.hiragana_id}">
                                         <input type="hidden" class="true_answer" id="true_answer_${hiragana.hiragana_id}" value="${hiragana.dakuten}">
                                     </div>
                                 </div>`;
@@ -106,10 +118,13 @@
                 // Ambil data dari localStorage
                 let user_true_answer = JSON.parse(localStorage.getItem('user_true_answer')) || [];
                 let user_false_answer = JSON.parse(localStorage.getItem('user_false_answer')) || [];
+                let user_true_kana_answer = JSON.parse(localStorage.getItem('user_true_kana_answer')) || [];
+                let user_false_kana_answer = JSON.parse(localStorage.getItem('user_false_kana_answer')) || [];
 
                 // Hapus ID dari daftar jika sebelumnya salah atau benar
                 user_true_answer = user_true_answer.filter(id => id !== hiragana_id);
                 user_false_answer = user_false_answer.filter(id => id !== hiragana_id);
+                // user_false_kana_answer = user_false_kana_answer.filter(id => id !== true_answer);
 
                 // simpan ke localstorage agar ketika direfresh data tidak hilang sampai user menyelesaikan test-nya
                 if (dakuten_field == true_answer) {
@@ -118,15 +133,19 @@
 
                     // tambahkan ke dalam array user_true_answer dan simpan ke localstorage
                     user_true_answer.push(hiragana_id);
+                    user_true_kana_answer.push(dakuten_field);
                 } else {
                     console.log("Jawaban kamu " + dakuten_field + " SALAH!");
                     $('#card_' + hiragana_id).removeClass('bg-white bg-success').addClass('bg-danger');
 
                     // tambahkan ke dalam array user_false_answer dan simpan ke localstorage
                     user_false_answer.push(hiragana_id);
+                    user_false_kana_answer.push(dakuten_field);
                 }
                 localStorage.setItem('user_true_answer', JSON.stringify(user_true_answer));
                 localStorage.setItem('user_false_answer', JSON.stringify(user_false_answer));
+                localStorage.setItem('user_true_kana_answer', JSON.stringify(user_true_kana_answer));
+                localStorage.setItem('user_false_kana_answer', JSON.stringify(user_false_kana_answer));
             })
         })
     </script>
