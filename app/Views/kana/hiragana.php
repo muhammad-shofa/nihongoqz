@@ -40,6 +40,7 @@
             // simpan jawaban benar pada array
             let user_true_answer = [];
             let user_false_answer = [];
+            let count_all_kana_test = 0;
 
             // function untuk mengacak isi array 
             function shuffleArray(array) {
@@ -61,6 +62,7 @@
                         if (response.status == 'success') {
                             let cards = "";
                             let shuffled_hiragana = shuffleArray(response.dataHiragana);
+                            count_all_kana_test = response.dataHiragana.length;
                             // console.log(shuffled_hiragana);
                             let get_user_true_answer = JSON.parse(localStorage.getItem('user_true_answer'))?.map(String) || [];
                             let get_user_false_answer = JSON.parse(localStorage.getItem('user_false_answer'))?.map(String) || [];
@@ -83,10 +85,10 @@
 
                                 if (is_correct && correctIndex !== -1) {
                                     bg_class = "bg-success";
-                                    value_kana = get_user_true_kana_answer[correctIndex] || ""; // Ambil huruf hiragana dari array user_true_kana_answer
+                                    value_kana = get_user_true_kana_answer[correctIndex] || "";
                                 } else if (is_wrong && wrongIndex !== -1) {
                                     bg_class = "bg-danger";
-                                    value_kana = get_user_false_kana_answer[wrongIndex] || ""; // Ambil huruf hiragana dari array user_false_kana_answer
+                                    value_kana = get_user_false_kana_answer[wrongIndex] || "";
                                 }
 
                                 cards += `
@@ -124,7 +126,11 @@
                 // Hapus ID dari daftar jika sebelumnya salah atau benar
                 user_true_answer = user_true_answer.filter(id => id !== hiragana_id);
                 user_false_answer = user_false_answer.filter(id => id !== hiragana_id);
-                // user_false_kana_answer = user_false_kana_answer.filter(id => id !== true_answer);
+                // user_true_kana_answer = user_true_kana_answer.filter(kana => kana !== dakuten_field);
+                // user_false_kana_answer = user_false_kana_answer.filter(kana => kana !== dakuten_field);
+                // Hapus kana yang terkait dengan hiragana_id dari user_true_kana_answer dan user_false_kana_answer
+                user_true_kana_answer = user_true_kana_answer.filter(kana => kana !== dakuten_field);
+                user_false_kana_answer = user_false_kana_answer.filter(kana => kana !== dakuten_field);
 
                 // simpan ke localstorage agar ketika direfresh data tidak hilang sampai user menyelesaikan test-nya
                 if (dakuten_field == true_answer) {
@@ -146,7 +152,47 @@
                 localStorage.setItem('user_false_answer', JSON.stringify(user_false_answer));
                 localStorage.setItem('user_true_kana_answer', JSON.stringify(user_true_kana_answer));
                 localStorage.setItem('user_false_kana_answer', JSON.stringify(user_false_kana_answer));
+
+                // Debugging: Cek apakah data berhasil diubah
+                // console.log("user_false_kana_answer: ", user_false_kana_answer);
+                // console.log("user_true_kana_answer: ", user_true_kana_answer);
             })
+
+            // Finish the test
+            $(".btn-finish").on('click', function() {
+
+                // ambil jumlah semua card/test yang sedang dikerjakan 
+                // Ambil data dari localStorage
+                let get_user_true_answer = JSON.parse(localStorage.getItem("user_true_answer")) || [];
+                let get_user_false_answer = JSON.parse(localStorage.getItem("user_false_answer")) || [];
+
+                // Gabungkan semua ID yang sudah dijawab
+                let all_answered = [...get_user_true_answer, ...get_user_false_answer];
+
+                // Hilangkan duplikasi untuk mendapatkan jumlah total soal
+                let unique_questions = [...new Set(all_answered)];
+
+                // Hitung jumlah soal yang dijawab benar
+                let correct_count = get_user_true_answer.length;
+
+                // Hitung jumlah total soal
+                let total_questions = unique_questions.length;
+
+                console.log(total_questions);
+                console.log(count_all_kana_test);
+
+                // cek apakah semua test sudah dikerjakan
+                if (count_all_kana_test !== total_questions) {
+                    alert('Make sure you do all the questions!');
+                } else {
+                    // Hitung persentase
+                    let percentage = total_questions > 0 ? (correct_count / total_questions) * 100 : 0;
+                    percentage = percentage.toFixed(2); // Format ke 2 desimal
+
+                    alert(`Test completed!\n${correct_count} / ${total_questions}\nPercentage : ${percentage}%`);
+                }
+            });
+
         })
     </script>
 </body>
