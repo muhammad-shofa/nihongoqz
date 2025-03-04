@@ -14,12 +14,18 @@ class PagesController extends ResourceController
     // tampilkan halmaan hiragana
     public function hiragana()
     {
-        return view('kana/hiragana');
+        return view('kana-test/hiragana');
     }
 
     // tampilkan halmaan katakana
     public function katakana()
     {
-        return view('kana/katakana');
+        return view('kana-test/katakana');
+    }
+
+    // tampilakan halmaan hiragana result test
+    public function hiraganaResult()
+    {
+        return view('kana-result/result.php');
     }
 }
