@@ -140,8 +140,10 @@ $(document).ready(function() {
             // Hitung persentase
             let percentage = total_questions > 0 ? (correct_count / total_questions) * 100 : 0;
             percentage = percentage.toFixed(2); // Format ke 2 desimal
-
+            
             // ketika user belum login maka simpan hasil ke dalam localstorage saja, namun ketika sudah login maka masukkan haisl test ke database
+            localStorage.setItem('correct_count_result', correct_count);
+            localStorage.setItem('total_questions_result', total_questions);
             localStorage.setItem('percentage_result', percentage);
             window.location.href = "/hiragana-test/result";
         }

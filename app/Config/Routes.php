@@ -17,4 +17,4 @@ $routes->get('/api/hiragana', 'HiraganaController::index');
 $routes->get('/api/result', 'Hiragana::result'); // digunakan untuk mengambil data result dari database (user sudah login)
 
 // session routes
-$routes->get('/check-session/(:any)', 'SessionController::index');
+$routes->get('/check-session/(:any)', 'SessionController::index/$1');
