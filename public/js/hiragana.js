@@ -3,6 +3,7 @@ $(document).ready(function() {
     let user_true_answer = [];
     let user_false_answer = [];
     let count_all_kana_test = 0;
+    let is_test_ongoing = "";
 
     // function untuk mengacak isi array 
     function shuffleArray(array) {
@@ -16,6 +17,17 @@ $(document).ready(function() {
 
     // function untuk meminta semua data hiragana dari backend melalui endpoint
     function loadHiraganaTest() {
+        // ambil status test saat ini dan lakukan pengecekan
+        is_test_ongoing = JSON.parse(localStorage.getItem("is_test_ongoing"));
+        if (is_test_ongoing) {
+            $('.test-ongoing').removeClass('d-none');
+            $('.test-prepare').addClass('d-none');
+        } else {
+            $('.test-ongoing').addClass('d-none');
+            $('.test-prepare').removeClass('d-none');
+            return;
+        }
+
         $.ajax({
             url: '/api/hiragana',
             type: 'GET',
@@ -70,6 +82,18 @@ $(document).ready(function() {
     }
 
     loadHiraganaTest();
+
+    // ketika diklik class .btn-start-test" maka akan menyimpan kana_types dari select option lalu menampilkan test-ongoing dan menyembunyikan test-prepare
+    $(".btn-start-test").on('click', function () {
+        let kana_types = $('#kana_types').val();
+        if (kana_types != "Select kana type") {
+            $('.test-ongoing').removeClass('d-none');
+            $('.test-prepare').addClass('d-none');
+            localStorage.setItem("is_test_ongoing", JSON.stringify(true));
+            loadHiraganaTest();
+        }
+    })
+    
 
     $(document).on('change', '.dakuten_field', function() {
         let hiragana_id = $(this).data("hiragana_id");

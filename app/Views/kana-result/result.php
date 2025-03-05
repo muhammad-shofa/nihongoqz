@@ -20,7 +20,7 @@
     <div class="container bg-light-subtle">
         <!-- result test -->
         <div id="container-result-card" class="mt-5 rounded">
-            <h1 class="text-center">Your Hiragana Test Result</h1>
+            <h1 class="text-center">Hiragana Test Result</h1>
             <div class="d-flex justify-content-evenly align-items-center gap-3 rounded">
                 <div class="px-5 mx-5">
                     <h3><svg xmlns="http://www.w3.org/2000/svg" style="width: 25px;" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->

@@ -5,7 +5,13 @@ $(document).ready(function () {
         2. dari database menggunakan endpoint dan result controller
         */
        let is_login_status = "";
-       let check_this_session = "is_login";
+       let check_this_session = "is_login"
+       let is_test_ongoing = localStorage.getItem('is_test_ongoing');
+
+    // cek apakah test sedang berjalan, jika tidak maka kembalikan user ke halaman hiragana-test
+       if (!is_test_ongoing) {
+        window.location.href = "/";
+       }
 
         $.ajax({
             url: "/check-session/" + check_this_session,
@@ -87,5 +93,11 @@ $(document).ready(function () {
     }
 
     loadResultTest();
+
+    // ketika tombol restart diklik
+    $('.btn-restart').on('click', function () {
+        localStorage.clear();
+        window.location.href = "/hiragana-test";
+    })
 })
 
