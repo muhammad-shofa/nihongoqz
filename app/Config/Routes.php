@@ -11,6 +11,7 @@ $routes->get('/hiragana-test', 'PagesController::hiragana');
 $routes->get('/katakana-test', 'PagesController::katakana');
 $routes->get('/hiragana-test/result', 'PagesController::hiraganaResult');
 // $routes->get('/katakana-test/result', 'PagesController::katakanaResult');
+$routes->get('/login', 'PagesController::login');
 
 // Kana routes
 $routes->get('/api/hiragana', 'HiraganaController::index');

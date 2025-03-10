@@ -28,4 +28,9 @@ class PagesController extends ResourceController
     {
         return view('kana-result/result.php');
     }
+
+    public function login()
+    {
+        return view('auth/login.php');
+    }
 }
