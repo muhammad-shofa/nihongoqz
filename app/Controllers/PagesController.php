@@ -33,4 +33,9 @@ class PagesController extends ResourceController
     {
         return view('auth/login.php');
     }
+
+    public function register()
+    {
+        return view('auth/register.php');
+    }
 }

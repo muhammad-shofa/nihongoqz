@@ -11,6 +11,17 @@ nav {
     background-color: #EB5B00;
 
 }
+
+.wrapper-register {
+    border: 5px solid #EB5B00;
+}
+
+.wrapper-register h2 {
+    background-color: #EB5B00;
+}
+.wrapper-register .btn-register {
+    background-color: #EB5B00;
+}
 /* nav ul li a {
 color: #ffffff;
 } */
