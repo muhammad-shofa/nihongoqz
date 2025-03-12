@@ -19,8 +19,9 @@ nav {
 .wrapper-register h2 {
     background-color: #EB5B00;
 }
-.wrapper-register .btn-register {
+.btn-register, .btn-login {
     background-color: #EB5B00;
+    color: #ffffff;
 }
 /* nav ul li a {
 color: #ffffff;

@@ -35,14 +35,53 @@ $(document).ready(function () {
                 }
             },
             error: function(xhr, status, error) {
-                alert('Register failed' + error);
+                Swal.fire({
+                    title: 'Register failed',
+                    icon: 'error',
+                    confirmButtonText: 'Oke'
+                })
             }
         })
-
     })
 
-
     // login
+    $('.btn-login').on('click', function() {
+        let username = $("#username").val();
+        let password = $("#password").val();
 
+        $.ajax({
+            url: '/api/auth/login',
+            type: 'POST',
+            data: {
+                username: username,
+                password: password
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.status == 'success') {
+                    Swal.fire({
+                        title: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'Oke'
+                    })
+                } else {
+                    Swal.fire({
+                        title: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Oke'
+                    })
+                }
+            },
+            error: function(xhr, status, error) {
+            //   alert('mbuh');
+                Swal.fire({
+                    title: 'Login failed',
+                    icon: 'error',
+                    confirmButtonText: 'Oke'
+                })
+            }
+        })
+        
+    })
 
 })

@@ -23,7 +23,26 @@ class UserController extends ResourceController
     public function register()
     {
         $data = $this->request->getPost();
-        
+
+        // validation rules
+        $validationRules = [
+            'name' => 'required|min_length[3]|max_length[150]',
+            'username' => 'required|min_length[3]|max_length[150]|is_unique[users.username]',
+            'password' => 'required|min_length[6]',
+            'email'    => 'required|valid_email|is_unique[users.email]',
+        ];
+
+        if (!$this->validate($validationRules)) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => implode("\n", $this->validator->getErrors())
+            ]);
+        }
+
+        // bersihkan data inputan yang diterima
+        $data['username'] = htmlspecialchars(strip_tags($data['username']));
+        $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
+
         // hash password
         $password_hashed = password_hash($data['password'], PASSWORD_DEFAULT);
         $data['password'] = $password_hashed;
@@ -36,7 +55,30 @@ class UserController extends ResourceController
         } else {
             return $this->response->setJSON(['status' => 'error', 'message' => 'Resgister failed']);
         }
-        // $this->userModel->save($data);
+    }
 
+    // tangani login user
+    public function login()
+    {
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+
+        $user = $this->userModel->where('username', $username)->first();
+
+        if (!$user) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Incorrect username or password'
+            ]);
+        }
+
+        if (!password_verify($password, $user['password'])) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Incorrect username or password'
+            ]);
+        }
+
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Login successfully']);
     }
 }
