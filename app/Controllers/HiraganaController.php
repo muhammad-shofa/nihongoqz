@@ -14,6 +14,7 @@ class HiraganaController extends ResourceController
         $this->hiraganaModel = new HiraganaModel();
     }
 
+    // ambi semua data dari tabel hiragana
     public function index()
     {
         $dataHiragana = $this->hiraganaModel->findAll();

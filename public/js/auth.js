@@ -15,11 +15,24 @@ $(document).ready(function () {
                 username: username,
                 password: password,
                 email: email,
-                gender: gender
+                gender: gender,
             },
             dataType: 'json',
             success: function(response) {
-
+                if (response.status == 'success') {
+                    Swal.fire({
+                        title: response.message,
+                        icon: 'success',
+                        confirmButtonText: "Let's Login!"
+                    })
+                    // window.location.href = '/login';
+                } else {
+                    Swal.fire({
+                        title: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'Oke'
+                    })
+                }
             },
             error: function(xhr, status, error) {
                 alert('Register failed' + error);
