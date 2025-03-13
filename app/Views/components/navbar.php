@@ -20,10 +20,18 @@
                     <a class="nav-link text-white" href="/katakana-test">Katakana Test</a>
                 </li>
             </ul>
-            <div class="d-flex gap-2 align-items-center">
-                <a href="/login" class="text-white text-decoration-none py-2 px-3 border border-4 border-white rounded">Login</a>
-                <a href="/register" class="text-white text-decoration-none py-2 px-3">Register</a>
-            </div>
+            <?php
+            $session = session();
+            if ($session->has('is_login') && $session->get('is_login') === true) { ?>
+                <div class="d-flex gap-2 align-items-center">
+                    <a href="/api/auth/logout" class="btn-logout text-white text-decoration-none py-2 px-3 border border-4 border-white rounded">Logout</a>
+                </div>
+            <?php } else { ?>
+                <div class="d-flex gap-2 align-items-center">
+                    <a href="/login" class="text-white text-decoration-none py-2 px-3 border border-4 border-white rounded">Login</a>
+                    <a href="/register" class="text-white text-decoration-none py-2 px-3">Register</a>
+                </div>
+            <?php }  ?>
         </div>
         <!-- </div> -->
     </div>

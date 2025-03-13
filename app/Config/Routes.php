@@ -21,6 +21,7 @@ $routes->get('/api/result', 'Hiragana::result'); // digunakan untuk mengambil da
 // register & login
 $routes->post('/api/auth/register', 'UserController::register');
 $routes->post('/api/auth/login', 'UserController::login');
+$routes->get('/api/auth/logout', 'UserController::logout');
 
 // session routes
 $routes->get('/check-session/(:any)', 'SessionController::index/$1');

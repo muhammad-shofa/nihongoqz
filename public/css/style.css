@@ -19,7 +19,7 @@ nav {
 .wrapper-register h2 {
     background-color: #EB5B00;
 }
-.btn-register, .btn-login {
+.btn-register, .btn-login, .btn-logout {
     background-color: #EB5B00;
     color: #ffffff;
 }

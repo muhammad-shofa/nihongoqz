@@ -79,6 +79,7 @@ class UserController extends ResourceController
             ]);
         }
 
+        // tambahkan session ketika user berhasil login
         session()->set([
             'user_id' => $user['user_id'],
             'username' => $user['username'],
@@ -87,5 +88,13 @@ class UserController extends ResourceController
         ]);
 
         return $this->response->setJSON(['status' => 'success', 'message' => 'Login successfully']);
+    }
+
+    // tangani logout user
+    public function logout()
+    {
+        session()->destroy();
+
+        return redirect()->to('/');
     }
 }
