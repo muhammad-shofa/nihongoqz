@@ -79,6 +79,13 @@ class UserController extends ResourceController
             ]);
         }
 
+        session()->set([
+            'user_id' => $user['user_id'],
+            'username' => $user['username'],
+            'role' => $user['role'],
+            'is_login' => true
+        ]);
+
         return $this->response->setJSON(['status' => 'success', 'message' => 'Login successfully']);
     }
 }

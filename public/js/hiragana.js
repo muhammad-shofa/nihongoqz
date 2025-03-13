@@ -79,7 +79,7 @@ $(document).ready(function() {
                 alert('Failed to fetch data');
             }
         })
-    }
+    };
 
     loadHiraganaTest();
 
@@ -92,7 +92,7 @@ $(document).ready(function() {
             localStorage.setItem("is_test_ongoing", JSON.stringify(true));
             loadHiraganaTest();
         }
-    })
+    });
     
 
     $(document).on('change', '.dakuten_field', function() {
@@ -135,7 +135,7 @@ $(document).ready(function() {
         localStorage.setItem('user_false_answer', JSON.stringify(user_false_answer));
         localStorage.setItem('user_true_kana_answer', JSON.stringify(user_true_kana_answer));
         localStorage.setItem('user_false_kana_answer', JSON.stringify(user_false_kana_answer));
-    })
+    });
 
     // Finish the test
     $(".btn-finish").on('click', function() {

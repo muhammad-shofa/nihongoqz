@@ -24,8 +24,9 @@ $(document).ready(function () {
                         title: response.message,
                         icon: 'success',
                         confirmButtonText: "Let's Login!"
+                    }).then(() => {
+                        window.location.href = '/login';
                     })
-                    // window.location.href = '/login';
                 } else {
                     Swal.fire({
                         title: response.message,
@@ -63,6 +64,8 @@ $(document).ready(function () {
                         title: response.message,
                         icon: 'success',
                         confirmButtonText: 'Oke'
+                    }).then(() => {
+                        window.location.href = '/hiragana-test';
                     })
                 } else {
                     Swal.fire({

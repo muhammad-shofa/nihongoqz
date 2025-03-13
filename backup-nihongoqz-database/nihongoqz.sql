@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 23, 2025 at 02:08 PM
+-- Generation Time: Mar 13, 2025 at 12:26 PM
 -- Server version: 8.0.41-0ubuntu0.24.04.1
 -- PHP Version: 8.3.6
 
@@ -47,7 +47,17 @@ INSERT INTO `hiragana` (`hiragana_id`, `hiragana_kana`, `dakuten`) VALUES
 (7, 'き', 'ki'),
 (8, 'く', 'ku'),
 (9, 'け', 'ke'),
-(10, 'こ', 'ko');
+(10, 'こ', 'ko'),
+(11, 'さ', 'sa'),
+(12, 'し', 'shi'),
+(13, 'す', 'su'),
+(14, 'せ', 'se'),
+(15, 'そ', 'so'),
+(16, 'た', 'ta'),
+(17, 'ち', 'chi'),
+(18, 'つ', 'tsu'),
+(19, 'て', 'te'),
+(20, 'と', 'to');
 
 -- --------------------------------------------------------
 
@@ -60,6 +70,31 @@ CREATE TABLE `katakana` (
   `katakana_kana` varchar(50) NOT NULL,
   `dakuten` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int NOT NULL,
+  `name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `username` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `gender` enum('M','W') NOT NULL,
+  `role` enum('user','admin') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `username`, `password`, `email`, `gender`, `role`) VALUES
+(4, 'wyxli', 'wyxli', '$2y$10$YNy4wcTYyIQtgvBdealTkuHdsXSslGPjRT.YjeJo6Q4yGX5oh3Tzu', 'wyxli@gmail.com', 'M', 'user'),
+(5, 'admin', 'admin', '$2y$10$JZgTVwO5Z0pS9r.3dlpAnuF6kVDAnCvSKWDBUuZjj0c5Az30FhHSG', 'admin@gmail.com', 'M', 'user'),
+(12, 'yuzuriha', 'yuzuriha', '$2y$10$yl2tr89zqgyAKbgsfFAh3eiOepmUqJkwNMqqFLhnksE6hXZLKMs.y', 'yuzuriha@gmail.com', 'W', 'user');
 
 --
 -- Indexes for dumped tables
@@ -78,6 +113,12 @@ ALTER TABLE `katakana`
   ADD PRIMARY KEY (`katakana_id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -85,13 +126,19 @@ ALTER TABLE `katakana`
 -- AUTO_INCREMENT for table `hiragana`
 --
 ALTER TABLE `hiragana`
-  MODIFY `hiragana_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `hiragana_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `katakana`
 --
 ALTER TABLE `katakana`
   MODIFY `katakana_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

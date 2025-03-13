@@ -5,10 +5,10 @@ $(document).ready(function () {
         2. dari database menggunakan endpoint dan result controller ketika user sudah login
         */
        let is_login_status = "";
-       let check_this_session = "is_login"
+       let check_this_session = "is_login";
        let is_test_ongoing = localStorage.getItem('is_test_ongoing');
 
-    // cek apakah test sedang berjalan, jika tidak maka kembalikan user ke halaman hiragana-test
+        // cek apakah test sedang berjalan, jika tidak maka kembalikan user ke halaman hiragana-test
        if (!is_test_ongoing) {
         window.location.href = "/";
        }
@@ -29,12 +29,13 @@ $(document).ready(function () {
             error: function() {
                 alert("Failed to fetch data");
             }
-        })
+        });
 
         if (is_login_status == "active") {
-            // ketika is_login active maka ambil data dari databse menggunakan ajax
+            // ketika is_login active maka simpan data ke database lalu ambil kembali menggunakan ajax
             console.log("Fetch data from database");
         } else {
+            // jika is_login inactive maka ambil data dari localstorage tanpa menyimpannya pada database
             console.log("Fetch data from localstorage");
             let correct_count_result = localStorage.getItem("correct_count_result");
             let total_questions_result = localStorage.getItem("total_questions_result");
@@ -98,6 +99,6 @@ $(document).ready(function () {
     $('.btn-restart').on('click', function () {
         localStorage.clear();
         window.location.href = "/hiragana-test";
-    })
+    });
 })
 
