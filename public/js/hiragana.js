@@ -83,13 +83,18 @@ $(document).ready(function() {
 
     loadHiraganaTest();
 
-    // ketika diklik class .btn-start-test" maka akan menyimpan kana_types dari select option lalu menampilkan test-ongoing dan menyembunyikan test-prepare
+    // ketika diklik class .btn-start-test" maka akan menyimpan kana_type dari select option lalu menampilkan test-ongoing dan menyembunyikan test-prepare
     $(".btn-start-test").on('click', function () {
-        let kana_types = $('#kana_types').val();
-        if (kana_types != "Select kana type") {
+        let char_type = $(this).attr('data-char_type');
+        console.log(char_type);
+        // let char_type = $('#char_type').val();
+        let kana_type = $('#kana_type').val();
+        if (kana_type != "Select kana type") {
             $('.test-ongoing').removeClass('d-none');
             $('.test-prepare').addClass('d-none');
             localStorage.setItem("is_test_ongoing", JSON.stringify(true));
+            localStorage.setItem("char_type", char_type);
+            localStorage.setItem("kana_type", kana_type);
             loadHiraganaTest();
         }
     });

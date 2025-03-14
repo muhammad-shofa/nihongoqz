@@ -19,6 +19,19 @@ class UserController extends ResourceController
 
     // }
 
+    // get session for jQuery
+    public function getSession()
+    {
+        $session = session();
+
+        return $this->response->setJSON([
+            'user_id' => $session->get('user_id'),
+            'username' => $session->get('username'),
+            'role' => $session->get('role'),
+            'is_login' => $session->get('is_login')
+        ]);
+    }
+
     // register user baru (kedepannya akan ditambahkan validasi)
     public function register()
     {
@@ -95,6 +108,6 @@ class UserController extends ResourceController
     {
         session()->destroy();
 
-        return redirect()->to('/');
+        return redirect()->to('');
     }
 }

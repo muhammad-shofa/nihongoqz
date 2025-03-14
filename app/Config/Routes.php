@@ -24,4 +24,7 @@ $routes->post('/api/auth/login', 'UserController::login');
 $routes->get('/api/auth/logout', 'UserController::logout');
 
 // session routes
-$routes->get('/check-session/(:any)', 'SessionController::index/$1');
+$routes->get('/get-session', 'UserController::getSession');
+
+// save result test
+$routes->post('/save-result-test', 'ResultController::saveResultTest');
