@@ -2,8 +2,8 @@ $(document).ready(function() {
     // simpan jawaban benar pada array
     let user_true_answer = [];
     let user_false_answer = [];
-    let count_all_kana_test = 0;
     let is_test_ongoing = "";
+    let count_all_kana_test = 0;
 
     // function untuk mengacak isi array 
     function shuffleArray(array) {
@@ -34,9 +34,9 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if (response.status == 'success') {
+                    count_all_kana_test = response.dataHiragana.length;
                     let cards = "";
                     let shuffled_hiragana = shuffleArray(response.dataHiragana);
-                    count_all_kana_test = response.dataHiragana.length;
                     let get_user_true_answer = JSON.parse(localStorage.getItem('user_true_answer'))?.map(String) || [];
                     let get_user_false_answer = JSON.parse(localStorage.getItem('user_false_answer'))?.map(String) || [];
                     let get_user_true_kana_answer = JSON.parse(localStorage.getItem('user_true_kana_answer')) || [];
@@ -159,11 +159,11 @@ $(document).ready(function() {
 
         // Hitung jumlah total soal
         let total_questions = unique_questions.length;
-        // console.log(total_questions);
-        // console.log(total_questions);
+        console.log(count_all_kana_test);
+        console.log(total_questions);
 
         // cek apakah semua test sudah dikerjakan
-        if (count_all_kana_test !== total_questions) {
+        if (count_all_kana_test != total_questions) {
             alert('Make sure you do all the questions!');
         } else {
             // Hitung persentase
@@ -174,6 +174,8 @@ $(document).ready(function() {
             localStorage.setItem('correct_count_result', correct_count);
             localStorage.setItem('total_questions_result', total_questions);
             localStorage.setItem('percentage_result', percentage);
+            // set testSaved pada session untuk mengetahui data sudah disimpan atau belum jika user sudah login
+            sessionStorage.setItem('testSaved', "false");
             window.location.href = "/hiragana-test/result";
         }
     });

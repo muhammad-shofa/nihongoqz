@@ -16,12 +16,12 @@ class ResultController extends ResourceController
 
     public function saveResultTest()
     {
-        $char_type = $this->request->getPost('char_type');
-        $kana_type = $this->request->getPost('kana_type');
-        $true_answer = $this->request->getPost('true_answer');
-        $false_answer = $this->request->getPost('false_answer');
+        $session = session();
+        $data_result = $this->request->getPost();
+        $data_result['user_id'] = $session->get('user_id');
 
-        
+        $this->resultModel->save($data_result);
 
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Test result has been saved']);
     }
 }
