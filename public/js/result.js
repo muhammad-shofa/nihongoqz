@@ -67,7 +67,7 @@ $(document).ready(function () {
                 summary = `Excellent work! You scored ${correct_count_result} out of ${total_questions_result}, reaching an impressive ${percentage_result}%. Your proficiency level is ${proficiency}, showing a strong grasp of the material. Keep up the great work and strive for perfection!`;
                 break;
         }
-
+        
         // debug
         // console.log(correct_count_result);
         // console.log(total_questions_result);
@@ -92,7 +92,8 @@ $(document).ready(function () {
                 saveResultTest().then((response) => {
                     console.log(response.status)
                     console.log(response.message)
-                    alert(response.message)
+                    // berikan 
+                    // alert(response.message)
                     sessionStorage.setItem('testSaved', 'true');
                     return showResultTest();
                 })

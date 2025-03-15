@@ -1,6 +1,47 @@
+:root {
+    --primary: #EB5B00;
+    --secondary: #ffffff;
+    --text-color: #ffffff;
+    --text-purple: #6f39ee;
+    --text-gray: #18181b;
+}
+
+/* body {
+    background-color: var(--primary);
+} */
+
 nav {
     min-height: 70px;
-    background-color: #EB5B00;
+    /* background-color: var(--bg-gray); */
+    /* background-color: #EB5B00; */
+       /* From https://css.glass */
+       background: rgba(235, 91, 0, 0.25);
+       border-radius: 16px;
+       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+       backdrop-filter: blur(20px);
+       -webkit-backdrop-filter: blur(20px);
+       border: 5px solid rgba(235, 91, 0, 0.3);
+}
+
+footer .footer-content {
+    /* height: max-content; */
+    /* min-height: 60px; */
+    min-width: max-content;
+    max-width: 300px;
+    /* position: fixed; */
+    /*background-color: var(--bg-gray);
+    *//*background-color: #EB5B00;
+    *//*Fromhttps:;
+    //css.glass*/background: rgba(235, 91, 0, 0.25);
+    /* border-radius: 16px; */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 3px solid rgba(235, 91, 0, 0.3);
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
 }
 
 #container-result-card {
@@ -12,17 +53,151 @@ nav {
 
 }
 
-.wrapper-register {
+/* .wrapper-register {
     border: 5px solid #EB5B00;
+    background: rgba(235, 91, 0, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 5px solid rgba(235, 91, 0, 0.3);
 }
 
 .wrapper-register h2 {
     background-color: #EB5B00;
-}
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: var(--primary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+} */
 .btn-register, .btn-login, .btn-logout {
     background-color: #EB5B00;
     color: #ffffff;
 }
-/* nav ul li a {
-color: #ffffff;
-} */
+
+.bg-orange {
+    background-color: var(--primary);
+}
+
+.btn-nav-login {
+    border: 2px solid var(--primary);
+    border-radius: 7px;
+    text-decoration: none;
+    color: var(--secondary);
+    background-color: var(--primary);
+    transition: all 0.3s ease-in-out;
+    padding: 8px 16px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+
+.btn-nav-login:hover {
+    /* background-color: var(--secondary); */
+    background: none;
+    color: var(--primary);
+}
+
+.btn-nav-register {
+    border: 2px solid var(--primary);
+    border-radius: 7px;
+    text-decoration: none;
+    color: var(--primary);
+    transition: all 0.3s ease-in-out;
+    padding: 8px 16px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+.btn-nav-register:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+#bg-home {
+    background-image: url('/img/japan-new-place-3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#bg-hiragana-test {
+    background-image: url('/img/japan-old-place-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#bg-result {
+    background-image: url('/img/japan-old-place-4.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#bg-login {
+    background-image: url('/img/japan-old-place-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#bg-register {
+    background-image: url('/img/japan-old-place-3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+#bg-profile {
+    background-image: url('/img/japan-new-place-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.text-orange {
+    color: var(--primary);
+}
+.card-glass {
+    min-width: 800px;
+    padding: 50px;
+    margin-top: 100px;
+    color: var(--text-color);
+    /* From https://css.glass */
+    background: rgba(235, 91, 0, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 5px solid rgba(235, 91, 0, 0.3);
+    border-radius: 17px;
+    -webkit-border-radius: 17px;
+    -moz-border-radius: 17px;
+    -ms-border-radius: 17px;
+    -o-border-radius: 17px;
+}
+.menu-card-profile {
+    border: 5px solid var(--secondary);
+    background-color: var(--secondary);
+    padding: 8px 15px;
+    margin: 8px;
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+.menu-card-profile:hover{
+    border: 5px solid var(--secondary);
+    background-color: var(--primary);
+    color: var(--secondary);
+}

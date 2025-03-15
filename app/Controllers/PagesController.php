@@ -38,4 +38,14 @@ class PagesController extends ResourceController
     {
         return view('auth/register.php');
     }
+
+    public function profile()
+    {
+        return view('user/profile.php');
+    }
+
+    public function history()
+    {
+        return view('user/history.php');
+    }
 }

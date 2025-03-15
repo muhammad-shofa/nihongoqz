@@ -11,14 +11,15 @@
     <title>Nihongoqz | Login</title>
 </head>
 
-<body>
+<body id="bg-login">
     <!-- navbar -->
     <?= view('components/navbar') ?>
 
     <div class="container py-5">
-        <div class="wrapper-register w-50 mx-auto rounded">
-            <h2 class="text-center text-white p-3">Login</h2>
-            <form class="p-3">
+    <!-- wrapper-register  -->
+        <div class="card-glass w-50 mx-auto">
+            <h2 class="text-center p-3">Nihongoqz | Login</h2>
+            <form class="p-3 ">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" required>
@@ -27,6 +28,7 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
+                <p>Don't have an account? <a href="/register" class="text-decoration-none text-white">Register</a></p>
                 <button type="button" class="btn-login btn">Login</button>
             </form>
         </div>

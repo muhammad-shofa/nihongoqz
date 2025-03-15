@@ -11,13 +11,13 @@
     <title>Nihongoqz | Register</title>
 </head>
 
-<body>
+<body id="bg-register">
     <!-- navbar -->
     <?= view('components/navbar') ?>
 
-    <div class="container py-5">
-        <div class="wrapper-register w-50 mx-auto rounded">
-            <h2 class="text-center text-white p-3">Register</h2>
+    <div class="container">
+        <div class="card-glass w-50 mx-auto">
+            <h2 class="text-center text-white p-3">Nihongoqz | Register</h2>
             <form class="p-3">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
@@ -52,6 +52,7 @@
                         </div>
                     </div>
                 </div>
+                <p>Already have an account? <a href="/login" class="text-decoration-none text-white">Login</a></p>
                 <button type="button" class="btn-register btn">Register</button>
             </form>
         </div>

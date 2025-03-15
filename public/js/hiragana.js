@@ -49,7 +49,7 @@ $(document).ready(function() {
 
                         let bg_class = "bg-white";
                         let value_kana = "";
-
+                        
                         // Cari indeks hiragana_id dalam user_true_answer dan user_false_answer
                         let correctIndex = get_user_true_answer.indexOf(hiragana.hiragana_id);
                         let wrongIndex = get_user_false_answer.indexOf(hiragana.hiragana_id);
@@ -144,7 +144,7 @@ $(document).ready(function() {
 
     // Finish the test
     $(".btn-finish").on('click', function() {
-        // Ambil semau data test yang dikerjakan dari localStorage
+        // Ambil semua data test yang dikerjakan dari localStorage
         let get_user_true_answer = JSON.parse(localStorage.getItem("user_true_answer")) || [];
         let get_user_false_answer = JSON.parse(localStorage.getItem("user_false_answer")) || [];
 
@@ -164,7 +164,11 @@ $(document).ready(function() {
 
         // cek apakah semua test sudah dikerjakan
         if (count_all_kana_test != total_questions) {
-            alert('Make sure you do all the questions!');
+            Swal.fire({
+                title: "Make sure you do all the questions!",
+                icon: 'warning',
+                confirmButtonText: 'Oke'
+            })
         } else {
             // Hitung persentase
             let percentage = total_questions > 0 ? (correct_count / total_questions) * 100 : 0;

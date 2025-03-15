@@ -11,7 +11,7 @@
     <title>Nihongoqz</title>
 </head>
 
-<body>
+<body id="bg-home">
     <!-- navbar -->
     <?= view('components/navbar') ?>
     <div class="container">

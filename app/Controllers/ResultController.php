@@ -24,4 +24,13 @@ class ResultController extends ResourceController
 
         return $this->response->setJSON(['status' => 'success', 'message' => 'Test result has been saved']);
     }
+
+    // ambil data result dari database sesuai user_id yang sedang login
+    public function history()
+    {
+        // $data = $this->resultModel->findAll();
+        $data = $this->resultModel->where('user_id', session()->get('user_id'))->findAll();
+
+        return $this->response->setJSON(['status' => 'success', 'message' => 'History was obtained', 'dataHistory' => $data]);
+    }
 }
