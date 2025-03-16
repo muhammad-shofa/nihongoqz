@@ -4,6 +4,7 @@ $(document).ready(function() {
     let user_false_answer = [];
     let is_test_ongoing = "";
     let count_all_kana_test = 0;
+    let char_type = localStorage.getItem('char_type');
 
     // function untuk mengacak isi array 
     function shuffleArray(array) {
@@ -66,8 +67,8 @@ $(document).ready(function() {
                         <div class="card text-center ${bg_class}" style="width: 18rem;" id="card_${hiragana.hiragana_id}">
                             <div class="card-body">
                                 <h2>${hiragana.hiragana_kana}</h2>
-                                <input type="text" class="dakuten_field form-control" value="${value_kana}" id="dakuten_field_${hiragana.hiragana_id}" data-hiragana_id="${hiragana.hiragana_id}">
-                                <input type="hidden" class="true_answer" id="true_answer_${hiragana.hiragana_id}" value="${hiragana.dakuten}">
+                                <input type="text" class="romaji_field form-control" value="${value_kana}" id="romaji_field_${hiragana.hiragana_id}" data-hiragana_id="${hiragana.hiragana_id}">
+                                <input type="hidden" class="true_answer" id="true_answer_${hiragana.hiragana_id}" value="${hiragana.romaji}">
                             </div>
                         </div>`;
 
@@ -81,7 +82,77 @@ $(document).ready(function() {
         })
     };
 
-    loadHiraganaTest();
+    // katakana test
+    // function untuk meminta semua data katakana dari backend melalui endpoint
+    function loadKatakanaTest() {
+        // ambil status test saat ini dan lakukan pengecekan
+        is_test_ongoing = JSON.parse(localStorage.getItem("is_test_ongoing"));
+        if (is_test_ongoing) {
+            $('.test-ongoing').removeClass('d-none');
+            $('.test-prepare').addClass('d-none');
+        } else {
+            $('.test-ongoing').addClass('d-none');
+            $('.test-prepare').removeClass('d-none');
+            return;
+        }
+
+        $.ajax({
+            url: '/api/katakana',
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                if (response.status == 'success') {
+                    count_all_kana_test = response.dataKatakana.length;
+                    let cards = "";
+                    let shuffled_katakana = shuffleArray(response.dataKatakana);
+                    let get_user_true_answer = JSON.parse(localStorage.getItem('user_true_answer'))?.map(String) || [];
+                    let get_user_false_answer = JSON.parse(localStorage.getItem('user_false_answer'))?.map(String) || [];
+                    let get_user_true_kana_answer = JSON.parse(localStorage.getItem('user_true_kana_answer')) || [];
+                    let get_user_false_kana_answer = JSON.parse(localStorage.getItem('user_false_kana_answer'))?.map(String) || [];
+
+                    shuffled_katakana.forEach(katakana => {
+                        let is_correct = get_user_true_answer.includes(katakana.katakana_id);
+                        let is_wrong = get_user_false_answer.includes(katakana.katakana_id);
+
+                        let bg_class = "bg-white";
+                        let value_kana = "";
+                        
+                        // Cari indeks katakana_id dalam user_true_answer dan user_false_answer
+                        let correctIndex = get_user_true_answer.indexOf(katakana.katakana_id);
+                        let wrongIndex = get_user_false_answer.indexOf(katakana.katakana_id);
+
+                        if (is_correct && correctIndex !== -1) {
+                            bg_class = "bg-success";
+                            value_kana = get_user_true_kana_answer[correctIndex] || "";
+                        } else if (is_wrong && wrongIndex !== -1) {
+                            bg_class = "bg-danger";
+                            value_kana = get_user_false_kana_answer[wrongIndex] || "";
+                        }
+
+                        cards += `
+                        <div class="card text-center ${bg_class}" style="width: 18rem;" id="card_${katakana.katakana_id}">
+                            <div class="card-body">
+                                <h2>${katakana.katakana_kana}</h2>
+                                <input type="text" class="romaji_field form-control" value="${value_kana}" id="romaji_field_${katakana.katakana_id}" data-katakana_id="${katakana.katakana_id}">
+                                <input type="hidden" class="true_answer" id="true_answer_${katakana.katakana_id}" value="${katakana.romaji}">
+                            </div>
+                        </div>`;
+                        
+                    });
+                    $('#container-card').html(cards);
+                }
+            },
+            error: function() {
+                alert('Failed to fetch data');
+            }
+        })
+    };
+
+    // if (char_type == 'hiragana') {
+    // jalankan
+    char_type == 'hiragana' ? loadHiraganaTest() : loadKatakanaTest();
+
+    // }
 
     // ketika diklik class .btn-start-test" maka akan menyimpan kana_type dari select option lalu menampilkan test-ongoing dan menyembunyikan test-prepare
     $(".btn-start-test").on('click', function () {
@@ -95,15 +166,21 @@ $(document).ready(function() {
             localStorage.setItem("is_test_ongoing", JSON.stringify(true));
             localStorage.setItem("char_type", char_type);
             localStorage.setItem("kana_type", kana_type);
-            loadHiraganaTest();
+            char_type == 'hiragana' ? loadHiraganaTest() : loadKatakanaTest();
         }
     });
     
 
-    $(document).on('change', '.dakuten_field', function() {
-        let hiragana_id = $(this).data("hiragana_id");
-        let dakuten_field = $('#dakuten_field_' + hiragana_id).val();
-        let true_answer = $('#true_answer_' + hiragana_id).val();
+    $(document).on('change', '.romaji_field', function() {
+        // char_type di sini bisa hiragana atau katakana tergantung user memilih test yang mana
+        let char_type = localStorage.getItem('char_type');
+        console.log("yyyyyyy : " + char_type);
+        // let hiragana_id = $(this).data("hiragana_id");
+        // let romaji_field = $('#romaji_field_' + hiragana_id).val();
+        // let true_answer = $('#true_answer_' + hiragana_id).val();
+        let char_id = $(this).data(char_type + "_id");
+        let romaji_field = $('#romaji_field_' + char_id).val();
+        let true_answer = $('#true_answer_' + char_id).val();
 
         // Ambil data dari localStorage
         let user_true_answer = JSON.parse(localStorage.getItem('user_true_answer')) || [];
@@ -112,29 +189,31 @@ $(document).ready(function() {
         let user_false_kana_answer = JSON.parse(localStorage.getItem('user_false_kana_answer')) || [];
 
         // Hapus ID dari daftar jika sebelumnya salah atau benar
-        user_true_answer = user_true_answer.filter(id => id !== hiragana_id);
-        user_false_answer = user_false_answer.filter(id => id !== hiragana_id);
-        // user_true_kana_answer = user_true_kana_answer.filter(kana => kana !== dakuten_field);
-        // user_false_kana_answer = user_false_kana_answer.filter(kana => kana !== dakuten_field);
+        // user_true_answer = user_true_answer.filter(id => id !== hiragana_id); // versi lama
+        // user_false_answer = user_false_answer.filter(id => id !== hiragana_id); // versi lama
+        user_true_answer = user_true_answer.filter(id => id !== char_id);
+        user_false_answer = user_false_answer.filter(id => id !== char_id);
+        // user_true_kana_answer = user_true_kana_answer.filter(kana => kana !== romaji_field);
+        // user_false_kana_answer = user_false_kana_answer.filter(kana => kana !== romaji_field);
         // Hapus kana yang terkait dengan hiragana_id dari user_true_kana_answer dan user_false_kana_answer
-        // user_true_kana_answer = user_true_kana_answer.filter(kana => kana !== dakuten_field);
-        // user_false_kana_answer = user_false_kana_answer.filter(kana => kana !== dakuten_field);
+        // user_true_kana_answer = user_true_kana_answer.filter(kana => kana !== romaji_field);
+        // user_false_kana_answer = user_false_kana_answer.filter(kana => kana !== romaji_field);
 
         // simpan ke localstorage agar ketika direfresh data tidak hilang sampai user menyelesaikan test-nya
-        if (dakuten_field == true_answer) {
-            console.log("Jawaban kamu " + dakuten_field + " BENAR!");
-            $('#card_' + hiragana_id).removeClass('bg-white bg-danger').addClass('bg-success');
+        if (romaji_field == true_answer) {
+            console.log("Jawaban kamu " + romaji_field + " BENAR!");
+            $('#card_' + char_id).removeClass('bg-white bg-danger').addClass('bg-success');
 
-            // tambahkan ke dalam array user_true_answer dan simpan ke localstorage
-            user_true_answer.push(hiragana_id);
-            user_true_kana_answer.push(dakuten_field);
+            // tambahkan char_id ke dalam array user_true_answer dan simpan ke localstorage
+            user_true_answer.push(char_id);
+            user_true_kana_answer.push(romaji_field);
         } else {
-            console.log("Jawaban kamu " + dakuten_field + " SALAH!");
-            $('#card_' + hiragana_id).removeClass('bg-white bg-success').addClass('bg-danger');
+            console.log("Jawaban kamu " + romaji_field + " SALAH!");
+            $('#card_' + char_id).removeClass('bg-white bg-success').addClass('bg-danger');
 
             // tambahkan ke dalam array user_false_answer dan simpan ke localstorage
-            user_false_answer.push(hiragana_id);
-            user_false_kana_answer.push(dakuten_field);
+            user_false_answer.push(char_id);
+            user_false_kana_answer.push(romaji_field);
         }
         localStorage.setItem('user_true_answer', JSON.stringify(user_true_answer));
         localStorage.setItem('user_false_answer', JSON.stringify(user_false_answer));

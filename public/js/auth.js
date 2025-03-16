@@ -65,7 +65,7 @@ $(document).ready(function () {
                         icon: 'success',
                         confirmButtonText: 'Oke'
                     }).then(() => {
-                        window.location.href = '/hiragana-test';
+                        window.location.href = '/profile';
                     })
                 } else {
                     Swal.fire({
@@ -76,7 +76,6 @@ $(document).ready(function () {
                 }
             },
             error: function(xhr, status, error) {
-            //   alert('mbuh');
                 Swal.fire({
                     title: 'Login failed',
                     icon: 'error',

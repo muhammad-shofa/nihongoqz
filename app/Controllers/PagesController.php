@@ -41,11 +41,21 @@ class PagesController extends ResourceController
 
     public function profile()
     {
+        // check is user logged in?
+        if (!session()->get('is_login')) {
+            return redirect()->to('/login');
+        }
+
         return view('user/profile.php');
     }
 
     public function history()
     {
+        // check is user logged in?
+        if (!session()->get('is_login')) {
+            return redirect()->to('/login');
+        }
+
         return view('user/history.php');
     }
 }

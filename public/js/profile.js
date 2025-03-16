@@ -20,6 +20,9 @@ $(document).ready(() => {
                 let rowDataHistory = "";
                 let no = 1;
 
+                if (response.dataHistory.length > 0) {
+                    
+
                 response.dataHistory.forEach(history => {
                     // ubah string array dari database menjadi array asli menggunakan JSON.parse
                     let true_answer_length = JSON.parse(history.true_answer).length;
@@ -37,13 +40,23 @@ $(document).ready(() => {
                 
                     rowDataHistory += `
                     <tr>
-                        <td>${no++}</td>
-                        <td>${history.char_type}</td>
-                        <td>${history.kana_type}</td>
+                    <td>${no++}</td>
+                    <td>${history.char_type}</td>
+                    <td>${history.kana_type}</td>
                         <td>${true_answer_length + "/" + total_questions}</td>
-                        <td>${percentage}</td>
+                        <td>${percentage} %</td>
                     </tr>`;
                 })
+                } else {
+                    rowDataHistory += `
+                    <tr>
+                        <td colspan="5"><p><b>You haven't done any tests yet!</b></p></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>`;
+            }
 
                 $('#body_data_history').html(rowDataHistory);
             }

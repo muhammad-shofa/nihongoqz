@@ -10,9 +10,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/">Home</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link text-white" href="/learn-kana">Learn Kana</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/hiragana-test">Hiragana Test</a>
                 </li>

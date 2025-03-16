@@ -15,9 +15,11 @@ $routes->get('/login', 'PagesController::login');
 $routes->get('/register', 'PagesController::register');
 $routes->get('/profile', 'PagesController::profile');
 $routes->get('/history', 'PagesController::history');
+// $routes->get('/learn-kana');
 
 // Kana routes
 $routes->get('/api/hiragana', 'HiraganaController::index');
+$routes->get('/api/katakana', 'KatakanaController::index');
 $routes->get('/api/result', 'Hiragana::result'); // digunakan untuk mengambil data result dari database (user sudah login)
 
 // register & login

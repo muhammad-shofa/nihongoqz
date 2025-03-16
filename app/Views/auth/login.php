@@ -16,7 +16,7 @@
     <?= view('components/navbar') ?>
 
     <div class="container py-5">
-    <!-- wrapper-register  -->
+        <!-- wrapper-register  -->
         <div class="card-glass w-50 mx-auto">
             <h2 class="text-center p-3">Nihongoqz | Login</h2>
             <form class="p-3 ">
@@ -29,10 +29,13 @@
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <p>Don't have an account? <a href="/register" class="text-decoration-none text-white">Register</a></p>
-                <button type="button" class="btn-login btn">Login</button>
+                <button type="button" class="btn-login">Login</button>
             </form>
         </div>
     </div>
+
+    <!-- footer -->
+    <?= view('components/footer') ?>
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

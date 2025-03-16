@@ -50,30 +50,27 @@ footer .footer-content {
 #container-result-card h1 {
     border-bottom: 8px solid #EB5B00;
     background-color: #EB5B00;
-
 }
-
-/* .wrapper-register {
-    border: 5px solid #EB5B00;
-    background: rgba(235, 91, 0, 0.25);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 5px solid rgba(235, 91, 0, 0.3);
-}
-
-.wrapper-register h2 {
+/* .btn-logout */
+.btn-register, .btn-login {
+    padding: 7px 12px;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
     background-color: #EB5B00;
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    color: var(--text-color);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+.btn-register:hover, .btn-login:hover {
+    background: none;
     color: var(--primary);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-} */
-.btn-register, .btn-login, .btn-logout {
-    background-color: #EB5B00;
-    color: #ffffff;
 }
 
 .bg-orange {
@@ -134,6 +131,7 @@ footer .footer-content {
     background-image: url('/img/japan-old-place-1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    padding-bottom: 50px;
 }
 #bg-result {
     background-image: url('/img/japan-old-place-4.jpg');
@@ -162,7 +160,7 @@ footer .footer-content {
 }
 .card-glass {
     min-width: 800px;
-    padding: 50px;
+    padding: 40px;
     margin-top: 100px;
     color: var(--text-color);
     /* From https://css.glass */
@@ -200,4 +198,7 @@ footer .footer-content {
     border: 5px solid var(--secondary);
     background-color: var(--primary);
     color: var(--secondary);
+}
+.test-prepare {
+    padding-bottom: 80px;
 }
