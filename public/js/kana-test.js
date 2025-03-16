@@ -221,6 +221,12 @@ $(document).ready(function() {
         localStorage.setItem('user_false_kana_answer', JSON.stringify(user_false_kana_answer));
     });
 
+    // cancel test
+    $('.btn-cancel').on('click', () => {
+        localStorage.clear();
+        location.reload();
+    })
+
     // Finish the test
     $(".btn-finish").on('click', function() {
         // Ambil semua data test yang dikerjakan dari localStorage

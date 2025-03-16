@@ -40,9 +40,10 @@
         <div id="container-card" class="d-flex flex-wrap justify-content-center align-items-center m-3 gap-3">
             <!--  -->
         </div>
-        <!-- btn finish test -->
+        <!-- btn cancel & finish test -->
         <div class="text-center">
-            <button class="btn-finish btn btn-lg btn-success rounded m-3">Finish</button>
+            <button class="btn-cancel btn btn-lg btn-danger rounded my-3 mx-5">Cancel Test</button>
+            <button class="btn-finish btn btn-lg btn-success rounded my-3 mx-5">Finish</button>
         </div>
     </div>
 

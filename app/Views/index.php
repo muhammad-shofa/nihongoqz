@@ -11,14 +11,35 @@
     <title>Nihongoqz</title>
 </head>
 
-<body id="bg-home">
-    <!-- navbar -->
-    <?= view('components/navbar') ?>
-    <div class="container">
+<body>
+    <!-- hero start -->
+    <div class="hero border border-3" id="bg-home">
+        <!-- navbar -->
+        <?= view('components/navbar') ?>
+        <div class="d-flex justify-content-evenly mt-5 pt-5">
+            <div class="text-hero text-white">
+                <h1><b class="text-highlight">Nihongoqz</b><b> | Master Japanese Kana with Fun Quizzes!</b></h1>
+                <p>Test your Japanese reading skills with interactive quizzes designed for all levels! Whether you're a beginner learning Hiragana & Katakana or an advanced learner tackling Kanji, NihongoQZ helps you improve in a fun and engaging way.</p>
+                <button class="btn-hero">Try Now!</button>
+            </div>
+            <div class="img-hero">
+                <img src="img/japan-old-place-3.jpg" alt="image">
+            </div>
+        </div>
 
-        <h1>Let's test your Japanese kana skills</h1>
+        <!-- <h1>Let's test your Japanese kana skills</h1>
         <a href="/hiragana-test">Hiragana Test</a>
-        <a href="/katakana-test">Katakana Test</a>
+        <a href="/katakana-test">Katakana Test</a> -->
+    </div>
+
+    <!-- waves -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="margin-top: -300px;">
+        <path fill="#EB5B00" fill-opacity="1" d="M0,224L1440,32L1440,320L0,320Z"></path>
+    </svg>
+
+    <!-- test available start -->
+    <div class="test-available">
+
     </div>
 
     <!-- footer -->

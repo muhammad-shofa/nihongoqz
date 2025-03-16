@@ -2,8 +2,6 @@
     --primary: #EB5B00;
     --secondary: #ffffff;
     --text-color: #ffffff;
-    --text-purple: #6f39ee;
-    --text-gray: #18181b;
 }
 
 /* body {
@@ -127,8 +125,62 @@ footer .footer-content {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+
+.hero {
+    min-height: 1000px;
+}
+.text-hero {
+    max-width: 600px;
+    margin-top: 100px;
+    margin-left: 90px;
+}
+.text-hero h1 {
+    font-size: 40px;
+    color: var(--primary);
+    background-color: var(--secondary);
+}
+.text-hero h1 .text-highlight {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+.text-hero p {
+    font-size: 18px;
+}
+.text-hero .btn-hero {
+    padding: 8px 16px;
+    background-color: var(--primary);
+    color: var(--secondary);
+    font-weight: bold;
+    border: 2px solid var(--primary);
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+}
+.img-hero img {
+    max-width: 450px;
+    max-height: 450px;
+    margin-top: 100px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.test-available {
+    min-height: 800px;
+    background-color: var(--primary);
+}
 #bg-hiragana-test {
     background-image: url('/img/japan-old-place-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 50px;
+}
+#bg-katakana-test {
+    background-image: url('/img/japan-old-place-3.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     padding-bottom: 50px;
