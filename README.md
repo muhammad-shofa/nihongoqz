@@ -9,7 +9,8 @@
 🚀 **Built with:**  
 - CodeIgniter 4 (PHP Framework)  
 - jQuery (for dynamic interactions)  
-- Bootstrap + Custom CSS (for a clean UI)  
+- Bootstrap + Custom CSS (for a clean UI)
+- Database MySQL
 
 ## 🎯 Features  
 - Select the type of kana you want: main kana, dakuten (under development), combination (under development)
