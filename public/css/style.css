@@ -4,14 +4,8 @@
     --text-color: #ffffff;
 }
 
-/* body {
-    background-color: var(--primary);
-} */
-
 nav {
     min-height: 70px;
-    /* background-color: var(--bg-gray); */
-    /* background-color: #EB5B00; */
        /* From https://css.glass */
        background: rgba(235, 91, 0, 0.25);
        border-radius: 16px;
@@ -22,15 +16,10 @@ nav {
 }
 
 footer .footer-content {
-    /* height: max-content; */
-    /* min-height: 60px; */
     min-width: max-content;
     max-width: 300px;
-    /* position: fixed; */
-    /*background-color: var(--bg-gray);
-    *//*background-color: #EB5B00;
-    *//*Fromhttps:;
-    //css.glass*/background: rgba(235, 91, 0, 0.25);
+    /* Fromhttps: css.glass */
+    background: rgba(235, 91, 0, 0.25);
     /* border-radius: 16px; */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
@@ -94,7 +83,6 @@ footer .footer-content {
 }
 
 .btn-nav-login:hover {
-    /* background-color: var(--secondary); */
     background: none;
     color: var(--primary);
 }
@@ -126,9 +114,11 @@ footer .footer-content {
     background-repeat: no-repeat;
 }
 
-
 .hero {
     min-height: 1000px;
+    margin-top: -20px;
+    padding-top: 20px;
+    /* border: 5px solid red; */
 }
 .text-hero {
     max-width: 600px;
@@ -172,6 +162,23 @@ footer .footer-content {
 .test-available {
     min-height: 800px;
     background-color: var(--primary);
+    padding: 20px;
+}
+.test-available .all-card .card {
+    width: max-content;
+    /* border: 5px solid var(--secondary); */
+}
+.test-available .all-card .card p {
+    max-width: 400px;
+}
+.test-available .all-card .card img {
+    max-width: 400px;
+    margin: 0px auto;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 #bg-hiragana-test {
     background-image: url('/img/japan-old-place-1.jpg');

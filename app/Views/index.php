@@ -13,7 +13,7 @@
 
 <body>
     <!-- hero start -->
-    <div class="hero border border-3" id="bg-home">
+    <div class="hero mt--3" id="bg-home">
         <!-- navbar -->
         <?= view('components/navbar') ?>
         <div class="d-flex justify-content-evenly mt-5 pt-5">
@@ -26,10 +26,6 @@
                 <img src="img/japan-old-place-3.jpg" alt="image">
             </div>
         </div>
-
-        <!-- <h1>Let's test your Japanese kana skills</h1>
-        <a href="/hiragana-test">Hiragana Test</a>
-        <a href="/katakana-test">Katakana Test</a> -->
     </div>
 
     <!-- waves -->
@@ -39,8 +35,27 @@
 
     <!-- test available start -->
     <div class="test-available">
-
+        <h2 class="text-center fw-bold text-white">Test Available</h2>
+        <div class="all-card d-flex flex-wrap gap-3 justify-content-evenly mt-5 text-center">
+        <div class="card">
+                <img src="img/hiragana.png" class="card-img-top" alt="Katakana Img">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/katakana.png" class="card-img-top" alt="Katakana Img">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- waves -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#EB5B00" fill-opacity="1" d="M0,64L1440,192L1440,0L0,0Z"></path>
+    </svg>
 
     <!-- footer -->
     <?= view('components/footer') ?>

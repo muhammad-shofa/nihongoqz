@@ -31,7 +31,6 @@ $(document).ready(function () {
         let kana_type = localStorage.getItem('kana_type');
         let true_answer = localStorage.getItem('user_true_answer');
         let false_answer = localStorage.getItem('user_false_answer');
-
         return $.ajax({
             url: '/save-result-test',
             type: 'POST',
