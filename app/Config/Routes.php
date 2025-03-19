@@ -15,6 +15,7 @@ $routes->get('/login', 'PagesController::login');
 $routes->get('/register', 'PagesController::register');
 $routes->get('/profile', 'PagesController::profile');
 $routes->get('/history', 'PagesController::history');
+$routes->get('/edit', 'PagesController::editP');
 // $routes->get('/learn-kana');
 
 // Kana routes
@@ -27,6 +28,7 @@ $routes->post('/api/auth/register', 'UserController::register');
 $routes->post('/api/auth/login', 'UserController::login');
 $routes->get('/api/auth/logout', 'UserController::logout');
 $routes->get('/api/history', 'ResultController::history'); // digunakan untuk mengambil data result lalu menampilaknnya pada halaman history
+// $routes->get('/api/edit','');
 
 // session routes
 $routes->get('/get-session', 'UserController::getSession');

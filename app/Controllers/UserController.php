@@ -98,6 +98,8 @@ class UserController extends ResourceController
             'username' => $user['username'],
             'role' => $user['role'],
             'is_login' => true
+/* name username password email gender role*/ 
+            
         ]);
 
         return $this->response->setJSON(['status' => 'success', 'message' => 'Login successfully']);

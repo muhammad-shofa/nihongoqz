@@ -58,4 +58,15 @@ class PagesController extends ResourceController
 
         return view('user/history.php');
     }
+
+
+    public function editP()
+    {
+        // check is user logged in?
+        if (!session()->get('is_login')) {
+            return redirect()->to('/login');
+        }
+
+        return view('user/edit.php');
+    }
 }

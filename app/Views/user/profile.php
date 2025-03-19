@@ -21,7 +21,7 @@
             <img src="img/profile.png" alt="Profile" width="60px">
             <h1 class="my-3">Hi <b class="text-decoration-underline"><?= session()->get('username') ?></b></h1>
             <div class="row mt-3">
-                <a href="#" class="col coming-soon menu-card-profile">Edit</a>
+                <a href="/edit" class="col coming-soon menu-card-profile">Edit</a>
                 <a href="/history" class="col menu-card-profile">History</a>
             </div>
             <div class="row">

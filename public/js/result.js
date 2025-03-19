@@ -14,7 +14,7 @@ $(document).ready(function () {
        if (!is_test_ongoing) {
         window.location.href = "/";
        }
-
+       
        // cek dan dapatkan session dari backend
        function checkSession() {
         return $.ajax({
