@@ -19,10 +19,9 @@ $(document).ready(() => {
                 console.log(response.dataHistory);
                 let rowDataHistory = "";
                 let no = 1;
-
+                
                 if (response.dataHistory.length > 0) {
                     
-
                 response.dataHistory.forEach(history => {
                     // ubah string array dari database menjadi array asli menggunakan JSON.parse
                     let true_answer_length = JSON.parse(history.true_answer).length;

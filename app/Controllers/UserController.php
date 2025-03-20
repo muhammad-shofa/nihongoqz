@@ -32,7 +32,19 @@ class UserController extends ResourceController
         ]);
     }
 
-    // register user baru (kedepannya akan ditambahkan validasi)
+    // ambil data user berdasarkan user_id
+    public function userById($user_id = 0)
+    {
+        $data = $this->userModel->where('user_id', $user_id)->findAll();
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'Fetch data success',
+            'data' => $data
+        ]);
+    }
+
+    // register user baru 
     public function register()
     {
         $data = $this->request->getPost();
@@ -69,7 +81,7 @@ class UserController extends ResourceController
             return $this->response->setJSON(['status' => 'error', 'message' => 'Resgister failed']);
         }
     }
-
+    
     // tangani login user
     public function login()
     {
@@ -98,8 +110,8 @@ class UserController extends ResourceController
             'username' => $user['username'],
             'role' => $user['role'],
             'is_login' => true
-/* name username password email gender role*/ 
-            
+            /* name username password email gender role*/
+
         ]);
 
         return $this->response->setJSON(['status' => 'success', 'message' => 'Login successfully']);

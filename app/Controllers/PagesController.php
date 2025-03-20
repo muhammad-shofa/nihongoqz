@@ -60,13 +60,13 @@ class PagesController extends ResourceController
     }
 
 
-    public function editP()
+    public function setting()
     {
         // check is user logged in?
         if (!session()->get('is_login')) {
             return redirect()->to('/login');
         }
 
-        return view('user/edit.php');
+        return view('user/setting.php');
     }
 }
