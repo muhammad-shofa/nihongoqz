@@ -9,12 +9,8 @@ $(document).ready(() => {
                 response.data.forEach((user) => {
                     $('#setting-name').text(user.name);
                     $('#setting-email').text(user.email);
-                    $('#setting-password').text(user.formatted_password);
                     $('#setting-gender').text(user.gender);
                     $('#setting-role').text(user.role);
-                    
-                    // add atribut
-                    $('#setting-name').attr('data-modal_name', 'name');
                 })
             }
         },
@@ -24,12 +20,12 @@ $(document).ready(() => {
     });
 
     // trigger modal
-    $(document).on('click', '.trigger-modal', () => {
+    $(document).on('click', '.trigger-modal', function () {
+        let modalName = $(this).data('modal_name');
+        // debug
+        // console.log(modalName);
+        $('.modal-title').text('Edit ' + modalName);
 
-    // })
-    // $('.trigger-modal').on('click', () => {
-        let modalName = $('#setting-name').data('modal_name');
-        console.log(modalName);
         $('#editModal').modal('show');
     })
 })
