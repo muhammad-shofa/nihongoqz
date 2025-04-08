@@ -25,7 +25,7 @@ $(document).ready(() => {
         // debug
         // console.log(modalName);
         $('.modal-title').text('Edit ' + modalName);
-
+        
         $('#editModal').modal('show');
     })
 })

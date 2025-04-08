@@ -40,12 +40,14 @@
         <div class="card">
                 <img src="img/hiragana.png" class="card-img-top" alt="Katakana Img">
                 <div class="card-body">
+                    <h2>Hiragana</h2>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
             </div>
             <div class="card">
                 <img src="img/katakana.png" class="card-img-top" alt="Katakana Img">
                 <div class="card-body">
+                    <h2>Katakana</h2>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
             </div>

@@ -54,6 +54,8 @@
                 </div>
                 <p>Already have an account? <a href="/login" class="text-decoration-none text-white">Login</a></p>
                 <button type="button" class="btn-register btn">Register</button>
+                <p>Or</p>
+                <a href="/" type="button" class="btn-danger btn mx-auto text-center">Login WIth Google</a>
             </form>
         </div>
     </div>

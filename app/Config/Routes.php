@@ -10,13 +10,11 @@ $routes->get('/', 'PagesController::index');
 $routes->get('/hiragana-test', 'PagesController::hiragana');
 $routes->get('/katakana-test', 'PagesController::katakana');
 $routes->get('/hiragana-test/result', 'PagesController::hiraganaResult');
-// $routes->get('/katakana-test/result', 'PagesController::katakanaResult');
 $routes->get('/login', 'PagesController::login');
 $routes->get('/register', 'PagesController::register');
 $routes->get('/profile', 'PagesController::profile');
 $routes->get('/history', 'PagesController::history');
 $routes->get('/setting', 'PagesController::setting');
-// $routes->get('/learn-kana');
 
 // Kana routes
 $routes->get('/api/hiragana', 'HiraganaController::index');
@@ -29,6 +27,8 @@ $routes->post('/api/auth/register', 'UserController::register');
 $routes->post('/api/auth/login', 'UserController::login');
 $routes->get('/api/auth/logout', 'UserController::logout');
 $routes->get('/api/history', 'ResultController::history'); // digunakan untuk mengambil data result lalu menampilaknnya pada halaman history
+$routes->get('/login/process', 'UserController::process'); // 
+$routes->get('/login/process', 'UserController::process'); // proses login
 // $routes->get('/api/edit','');
 
 // session routes
